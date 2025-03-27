@@ -34,4 +34,5 @@ block list information range id 9
 ;edgelength-distance 5 设置了在 distance 处的网格单元边长为 5
 ;range id 9 只对 ID 为 9 的 block 进行网格划分
 block zone generate center (0,0,0) edgelength-center 2 distance 10 edgelength-distance 5 range id 9
-block zone list
+;block zone list position  range id 9
+block zone list group range group '8';列出该组下所有得zone
