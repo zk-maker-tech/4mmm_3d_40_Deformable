@@ -69,7 +69,6 @@ block group '30' range position-x 500124.597 500304.897 position-y 3946723.227 3
 block hide off
 
 model save 'mmm1'
-call '2mmm.txt'
-
+;call '2mmm.txt'
 
 

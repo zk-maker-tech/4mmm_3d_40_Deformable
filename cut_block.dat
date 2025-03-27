@@ -22,4 +22,16 @@ block list group
 block list group range id 9
 block list group range group 'Default 8, SLOT 1 009'  ; 和block list group range id 9不一致
 block list information range id 9
-block list information range group 'Default 8, SLOT 1 009'
+;block list information range group 'Default 8, SLOT 1 009'
+;block densify segments 2 2 2 range id 9;可能densify 适用于rigid
+;block densify tetrahedra range id 9
+;block densify segments 2 2 2 range group 'Default 8, SLOT 1 009'
+
+;block zone generate edgelength 5 range id 9
+
+;edgelength-center 2 设置中心区域网格单元的边长为 2
+;distance 10 定义了从中心到 10 个单位远的地方，网格划分会发生变化
+;edgelength-distance 5 设置了在 distance 处的网格单元边长为 5
+;range id 9 只对 ID 为 9 的 block 进行网格划分
+block zone generate center (0,0,0) edgelength-center 2 distance 10 edgelength-distance 5 range id 9
+block zone list
