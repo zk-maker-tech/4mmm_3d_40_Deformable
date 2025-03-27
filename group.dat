@@ -1,0 +1,37 @@
+; 初始化模型
+model new
+model random 10000
+model large-strain off
+
+; 导入几何
+block import filename 'mmmGVol_Deformable_Binary_3d_40.3dgrid'
+block group 'exclude_zone' range position-z 220 226 position-x 500073.830 500249.830 position-y 3945646.627 3947079.882
+
+block group 'temp' range position-z 220 231
+
+fish define refine_group_temp
+    ; 声明变量
+    local bp, exclude_list, i, found
+
+    ; 获取排除组的所有块体指针（列表）
+    exclude_list = block.list(group='exclude_zone')
+
+    ; 遍历临时组中的块体
+    loop foreach bp block.list(group='temp')
+        found = false
+        ; 手动遍历排除组列表（修正循环语法）
+        loop i (1, list.size(exclude_list))  ; 注意括号和逗号
+            if exclude_list(i) == bp
+                found = true
+            endif
+        end_loop
+        ; 若存在则移除
+        if found
+            block.group.remove(bp, 'temp')
+        endif
+    end_loop
+end
+@refine_group_temp
+
+
+block list group 'temp'  ; 检查排除后的块体

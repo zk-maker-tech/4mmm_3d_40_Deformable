@@ -1,0 +1,12 @@
+; 初始化模型
+model new
+model random 10000
+model large-strain off
+
+; 导入几何
+block import filename 'new80.3dgrid'
+
+; 设置接触以模拟塌落
+block contact reset  ; 清除默认接触
+block tolerance 1e-4  ; 设置容差
+block contact generate-sub tolerance 1e-4  ; 生成子接触

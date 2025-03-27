@@ -1,0 +1,75 @@
+; 初始化模型
+model new
+model random 10000
+model large-strain off
+
+; 导入几何
+block import filename 'new80.3dgrid'
+
+; 设置接触以模拟塌落
+block contact reset  ; 清除默认接触
+block tolerance 1e-4  ; 设置容差
+block contact generate-sub tolerance 1e-4  ; 生成子接触
+
+block group '1' range position-z 527.600 745.958
+block group '2' range position-z 477.600 527.600
+block group '3' range position-z 387.600 477.600
+block group '4' range position-z 300.600 387.600
+block group '5' range position-z 290.600 300.600
+
+block group '6' range position-z 280.600 290.600
+
+block hide range group '1'
+block hide range group '2'
+block hide range group '3'
+block hide range group '4'
+block hide range group '5'
+block hide range group '6'
+block group '7' range position-z 272.600 280.600
+block hide range group '7'
+
+block group '8' range position-z 267.600 272.600
+block hide range group '8'
+block group '10' range position-z 265 267.600
+;block group '9' range position-z 265 267.600 not position-x 500073.830 500249.830 position-y 3945646.627 3947079.882 position-z 220 226
+;block hide range group '9'
+block group '31' range position-z 262.400 265
+;block hide range group '10'
+block group '9' range position-z 212.400 262.400
+;block hide range group '11'
+
+;煤层一
+;block group '12' range position-x 500124.597 500304.897 position-y 3945646.627 3945823.227 position-z 265 267.600
+block group '11' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 265 267.600
+block group '12' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 265 267.600
+block group '13' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 265 267.600
+block group '14' range position-x 500124.597 500304.897 position-y 3946123.227 3946223.227 position-z 265 267.600
+block group '15' range position-x 500124.597 500304.897 position-y 3946223.227 3946323.227 position-z 265 267.600
+block group '16' range position-x 500124.597 500304.897 position-y 3946323.227 3946423.227 position-z 265 267.600
+block group '17' range position-x 500124.597 500304.897 position-y 3946423.227 3946523.227 position-z 265 267.600
+block group '18' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 265 267.600
+block group '19' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 265 267.600
+block group '20' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 265 267.600
+;block group '23' range position-x 500124.597 500304.897 position-y 3946823.227 3947079.882 position-z 265 267.600
+
+;煤层二
+;block group '24' range position-x 500124.597 500304.897 position-y 3945646.627 3945823.227 position-z 262.400 265
+block group '21' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 262.400 265
+block group '22' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 262.400 265
+block group '23' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 262.400 265
+block group '24' range position-x 500124.597 500304.897 position-y 3946123.227 3946223.227 position-z 262.400 265
+block group '25' range position-x 500124.597 500304.897 position-y 3946223.227 3946323.227 position-z 262.400 265
+block group '26' range position-x 500124.597 500304.897 position-y 3946323.227 3946423.227 position-z 262.400 265
+block group '27' range position-x 500124.597 500304.897 position-y 3946423.227 3946523.227 position-z 262.400 265
+block group '28' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 262.400 265
+block group '29' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 262.400 265
+block group '30' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 262.400 265
+;block group '34' range position-x 500124.597 500304.897 position-y 3946823.227 3947079.882 position-z 262.400 265
+
+block hide off
+
+model save 'mmm1'
+call '2mmm.txt'
+
+
+

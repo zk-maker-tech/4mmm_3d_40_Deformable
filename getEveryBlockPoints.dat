@@ -1,0 +1,54 @@
+model new
+model random 10000
+model large-strain off
+
+; 导入几何
+block import filename 'mmmGVol_Deformable_Binary_3d_40.3dgrid'
+
+
+fish define get_z_range
+    ; 初始化极值变量
+    local z_min = 1e10   ; 初始化为极大值
+    local z_max = -1e10  ; 初始化为极小值
+    local bp             ; 块指针变量
+
+    ; 遍历所有块体
+    loop foreach bp block.list
+        ; 获取当前块的Z坐标
+        local z_pos = block.pos.z(bp)
+        io.out(bp)
+        ;io.out(z_pos)
+        ; 更新最小值
+        if z_pos < z_min
+            z_min = z_pos
+        endif  ; 必须用endif关闭if语句
+
+        ; 更新最大值
+        if z_pos > z_max
+            z_max = z_pos
+        endif
+    end_loop   ; 必须用end_loop关闭循环
+
+    ; 输出结果（使用逗号分隔参数）
+    ;io.out(z_min)
+    ;io.out(z_max)
+end
+@get_z_range  ; 正确调用函数
+fish define print_block_info
+    ; 遍历所有块体
+    loop foreach bp block.list
+        ; 获取块体ID
+        local bid = block.id(bp)
+        ; 获取块体分组（Slot）
+        local group_name = block.group(bp)
+        ; 获取质心坐标
+        local x = block.pos.x(bp)
+        local y = block.pos.y(bp)
+        local z = block.pos.z(bp)
+        
+        ; 输出信息
+        io.out('块体ID: ' + string(bid) + ' | 分组: ' + group_name + ' | 坐标: (' + string(x) + ', ' + string(y) + ', ' + string(z) + ')')
+    end_loop
+end
+
+@print_block_info  ; 执行函数

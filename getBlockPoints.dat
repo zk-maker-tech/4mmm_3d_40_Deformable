@@ -1,0 +1,39 @@
+model new
+model random 10000
+model large-strain off
+
+; 导入几何
+block import filename 'mmmGVol_Deformable_Binary_3d_40.3dgrid'
+
+fish define get_block_position_z_extents
+    ; 初始化最小值和最大值
+    local zmin = 1e10
+    local zmax = -1e10
+    local zpos
+
+    ; 获取所有 block 的 ID
+    local block_ids = block.list
+    local b
+
+    ; 遍历所有 block
+    loop foreach b block_ids
+        ; 获取当前 block 的 Z 坐标
+        zpos = block.pos.z(b)
+
+        ; 更新 Z 坐标的最小值和最大值
+        if zpos < zmin then
+            zmin = zpos
+        endif
+
+        if zpos > zmax then
+            zmax = zpos
+        endif
+         ; 输出最小值和最大值
+        io.out("Position-Z Min: " + string(zmin) + " Max: " + string(zmax))
+    endloop
+
+   
+end
+
+; 调用函数
+[get_block_position_z_extents]

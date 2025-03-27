@@ -1,0 +1,2353 @@
+{
+    "Header" : {
+        "Type" : "ITASCA PROJECT FILE" ,
+        "Name" : "3dec" ,
+        "Version" : 7.0000000e+00 ,
+        "Update" : 126 ,
+        "Binary" : false ,
+        "DateTime" : "2025-03-23T10:24:10" ,
+        "Format" : 0 ,
+        "Dimension" : 3 
+    },
+    "GuiModuleList" : [ 
+        {
+            "Name" : "Terminal" ,
+            "Entry" : {
+                "SaveFile" : "mmm1.sav" ,
+                "Kernel" : {
+                    "LoadCommands" : [  ],
+                    "ModuleList" : {
+                        "Modules" : [  ]
+                    },
+                    "Settings" : {
+                        "UpdateInterval" : 100 ,
+                        "Academic" : false ,
+                        "Demonstration" : true ,
+                        "Unrepeatable" : false ,
+                        "ReadOnly" : false ,
+                        "Mudward" : false 
+                    },
+                    "ProjectRanges" : {
+                        "SelfIndex" : 0 ,
+                        "Contents" : [  ]
+                    }
+                },
+                "SaveFiles" : {
+                    "Files" : [ 
+                        "mmm1.sav" ,
+                        "mmm2.sav" ,
+                        "1mining_100m.sav" ,
+                        "1mining_200m.sav" ,
+                        "1mining_300m.sav" ,
+                        "1mining_400m.sav" ,
+                        "1mining_500m.sav" ,
+                        "1mining_600m.sav" ,
+                        "1mining_700m.sav" ,
+                        "1mining_800m.sav" ,
+                        "1mining_900m.sav" ,
+                        "1mining_1000m.sav" ,
+                        "mmm3.sav" 
+                    ]
+                },
+                "ResultFiles" : {
+                    "Files" : [  ]
+                }
+            }
+        }, 
+        {
+            "Name" : "Block" ,
+            "Entry" : { }
+        }, 
+        {
+            "Name" : "DFN" ,
+            "Entry" : { }
+        }, 
+        {
+            "Name" : "Editor" ,
+            "Entry" : {
+                "DataFiles" : {
+                    "Files" : [ 
+                        "1mmm.txt" ,
+                        "2mmm.txt" ,
+                        "3mmm.txt" ,
+                        "mmmGVol_Deformable_Binary_3d_40.3dgrid" ,
+                        "group.dat" ,
+                        "new80.3dgrid" ,
+                        "new80.dat" 
+                    ]
+                },
+                "LastActive" : "D:/mm/4mmm_3d_40_Deformable-2025-3-18_2/new80.dat" ,
+                "OpenFiles" : [ 
+                    "1mmm.txt" ,
+                    "2mmm.txt" ,
+                    "3mmm.txt" ,
+                    "group.dat" ,
+                    "new80.dat" 
+                ]
+            }
+        }, 
+        {
+            "Name" : "GUIGeometry" ,
+            "Entry" : {
+                "SetList" : {
+                    "Files" : [  ]
+                }
+            }
+        }, 
+        {
+            "Name" : "guigeompane" ,
+            "Entry" : {
+                "Copy2FileNum" : 0 ,
+                "PastedFromFileNum" : 0 ,
+                "VisGeomSets" : [  ]
+            }
+        }, 
+        {
+            "Name" : "GuiPythonModule" ,
+            "Entry" : { }
+        }, 
+        {
+            "Name" : "ItascaModel" ,
+            "Entry" : { }
+        }, 
+        {
+            "Name" : "Plot" ,
+            "Entry" : {
+                "DefaultPage" : {
+                    "AutoUpdate" : true ,
+                    "Outline" : {
+                        "Active" : true ,
+                        "Enabled" : true ,
+                        "Width" : 2 ,
+                        "Style" : 1 ,
+                        "Color" : "#000000FF" ,
+                        "Bool" : true 
+                    },
+                    "Background" : "#ffffffFF" ,
+                    "Active" : true ,
+                    "Legend" : {
+                        "Active" : true ,
+                        "Placement" : 0 ,
+                        "TargetSize" : {
+                            "Width" : 25 ,
+                            "Height" : 50 
+                        },
+                        "Position" : {
+                            "X" : 66 ,
+                            "Y" : 40 
+                        },
+                        "Title" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 55 ,
+                            "Family" : "Times New Roman" ,
+                            "Style" : 1 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : true ,
+                            "Text" : "" 
+                        },
+                        "Caption" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 44 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : true ,
+                            "Text" : "" 
+                        },
+                        "Heading" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 94 ,
+                            "Family" : "Times New Roman" ,
+                            "Style" : 3 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : true ,
+                            "Text" : "" 
+                        },
+                        "Copyright" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 40 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : true ,
+                            "Text" : "" 
+                        },
+                        "Step" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 44 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : false ,
+                            "Text" : "" 
+                        },
+                        "Time" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 44 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : false ,
+                            "Text" : "" 
+                        },
+                        "Customer" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 44 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : false ,
+                            "Text" : "" 
+                        },
+                        "View" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 44 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : false ,
+                            "Text" : "" 
+                        },
+                        "ModelTime" : {
+                            "Active" : true ,
+                            "Enabled" : true ,
+                            "Size" : 44 ,
+                            "Family" : "Arial" ,
+                            "Style" : 0 ,
+                            "Color" : "#000000FF" ,
+                            "Bool" : false ,
+                            "Text" : "" 
+                        },
+                        "ViewDip" : false 
+                    },
+                    "Movie" : false ,
+                    "NextMovieIndex" : 1 ,
+                    "JobTitle" : {
+                        "Active" : true ,
+                        "Enabled" : true ,
+                        "Size" : 12 ,
+                        "Family" : "Arial" ,
+                        "Style" : 0 ,
+                        "Color" : "#000000FF" ,
+                        "Bool" : false ,
+                        "Text" : "" 
+                    },
+                    "ViewTitle" : {
+                        "Active" : true ,
+                        "Enabled" : true ,
+                        "Size" : 12 ,
+                        "Family" : "Arial" ,
+                        "Style" : 0 ,
+                        "Color" : "#000000FF" ,
+                        "Bool" : false ,
+                        "Text" : "Plot Title" 
+                    },
+                    "Target" : true 
+                },
+                "GlobalDefault" : {
+                    "Inter1" : {
+                        "Active" : true ,
+                        "Enabled" : true ,
+                        "Width" : 3 ,
+                        "Style" : 1 ,
+                        "Color" : "#ff0000FF" ,
+                        "Bool" : true 
+                    },
+                    "Inter2" : {
+                        "Active" : true ,
+                        "Enabled" : true ,
+                        "Width" : 2 ,
+                        "Style" : 1 ,
+                        "Color" : "#000000FF" ,
+                        "Bool" : true 
+                    },
+                    "Picking" : true ,
+                    "Sketch" : true ,
+                    "UpdateInterval" : 100 ,
+                    "PrintSize" : {
+                        "Width" : 1650 ,
+                        "Height" : 1238 
+                    },
+                    "MovieInterval" : 1000 ,
+                    "MovieExtension" : "png" ,
+                    "MovieSize" : {
+                        "Width" : 1024 ,
+                        "Height" : 768 
+                    },
+                    "MoviePrefix" : "movie_" ,
+                    "DXFWarning" : true ,
+                    "MaxLabels" : 1024000 
+                },
+                "Plots" : [ 
+                    {
+                        "View" : {
+                            "Locked" : false ,
+                            "Perspective" : true ,
+                            "EyePosition" : { "x" : 4.990103614031117e+05  , "y" : 3.944960264306779e+06  , "z" : 4.476079027249340e+02 } ,
+                            "ViewCenter" : { "x" : 5.001937620421956e+05  , "y" : 3.946296640805948e+06  , "z" : 4.537668615527149e+02 } ,
+                            "Up" : { "x" : -1.938719856774994e-02  , "y" : 1.256046321951160e-02  , "z" : 9.997331500432532e-01 } ,
+                            "Magnification" : 1.000000000000000e+00 ,
+                            "FirstViewAuto" : false ,
+                            "MinClipPlaneDist" : -1.000000000000000e+10 ,
+                            "MaxClipPlaneDist" : 1.000000000000000e+10 ,
+                            "SpecAsOrientation" : false ,
+                            "OrientationIn" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                            "SyncToName" : "" 
+                        },
+                        "Properties" : {
+                            "AutoUpdate" : true ,
+                            "Outline" : {
+                                "Active" : true ,
+                                "Enabled" : true ,
+                                "Width" : 2 ,
+                                "Style" : 1 ,
+                                "Color" : "#000000FF" ,
+                                "Bool" : true 
+                            },
+                            "Background" : "#ffffffFF" ,
+                            "Active" : true ,
+                            "Legend" : {
+                                "Active" : true ,
+                                "Placement" : 0 ,
+                                "TargetSize" : {
+                                    "Width" : 25 ,
+                                    "Height" : 50 
+                                },
+                                "Position" : {
+                                    "X" : 66 ,
+                                    "Y" : 40 
+                                },
+                                "Title" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 55 ,
+                                    "Family" : "Times New Roman" ,
+                                    "Style" : 1 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Caption" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Heading" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 94 ,
+                                    "Family" : "Times New Roman" ,
+                                    "Style" : 3 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Copyright" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 40 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Step" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "Time" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "Customer" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "View" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "ModelTime" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "ViewDip" : false 
+                            },
+                            "Movie" : false ,
+                            "NextMovieIndex" : 1 ,
+                            "JobTitle" : {
+                                "Active" : true ,
+                                "Enabled" : true ,
+                                "Size" : 12 ,
+                                "Family" : "Arial" ,
+                                "Style" : 0 ,
+                                "Color" : "#000000FF" ,
+                                "Bool" : false ,
+                                "Text" : "" 
+                            },
+                            "ViewTitle" : {
+                                "Active" : true ,
+                                "Enabled" : true ,
+                                "Size" : 12 ,
+                                "Family" : "Arial" ,
+                                "Style" : 0 ,
+                                "Color" : "#000000FF" ,
+                                "Bool" : false ,
+                                "Text" : "Plot Title" 
+                            },
+                            "Target" : true 
+                        },
+                        "PlotItems" : [ 
+                            {
+                                "Name" : "3dec-block" ,
+                                "Item" : {
+                                    "Active" : true ,
+                                    "Type" : 0 ,
+                                    "PIActive" : true ,
+                                    "ShowCaption" : true ,
+                                    "Title" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Size" : 55 ,
+                                        "Family" : "Times New Roman" ,
+                                        "Style" : 1 ,
+                                        "Color" : "#000000FF" ,
+                                        "Bool" : true ,
+                                        "Text" : "" 
+                                    },
+                                    "CutPlaneInfo" : {
+                                        "Active" : false ,
+                                        "On" : true ,
+                                        "Front" : false ,
+                                        "Back" : false ,
+                                        "Caption" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 44 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 0 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true ,
+                                            "Text" : "" 
+                                        },
+                                        "TypeName" : "None" ,
+                                        "SyncName" : "" ,
+                                        "Plane" : [  ]
+                                    },
+                                    "ClipBoxInfo" : {
+                                        "Active" : false ,
+                                        "Center" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                        "Dip" : 0.000000000000000e+00 ,
+                                        "DipDir" : 0.000000000000000e+00 ,
+                                        "Roll" : 0.000000000000000e+00 ,
+                                        "Radius" : { "x" : 1.000000000000000e+00  , "y" : 1.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                                        "Axis1Active" : true ,
+                                        "Axis2Active" : true ,
+                                        "Axis3Active" : true 
+                                    },
+                                    "Transparency" : 70 ,
+                                    "TransActive" : false ,
+                                    "TransLocked" : true ,
+                                    "Range" : [ 
+                                        {
+                                            "Active" : true ,
+                                            "RenderModeSpecific" : true ,
+                                            "ExtentModel" : true ,
+                                            "Type" : 1325527003 ,
+                                            "RangePlotItem" : [  ],
+                                            "Range" : [ 
+                                                {
+                                                    "SelfIndex" : 0 ,
+                                                    "ID" : 0 ,
+                                                    "Name" : "" ,
+                                                    "Union" : false ,
+                                                    "Selected" : false ,
+                                                    "Deselected" : false ,
+                                                    "UseHidden" : false ,
+                                                    "Elements" : [ 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "2,SLOT 1=005" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "2,SLOT 1=005" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "ZoneFaces" : true ,
+                                    "Excavated" : false ,
+                                    "Walls" : false ,
+                                    "Map" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Map" : 0 ,
+                                        "Translate" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                        "Scale" : { "x" : 1.000000000000000e+00  , "y" : 1.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                                        "Caption" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 44 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 0 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true ,
+                                            "Text" : "" 
+                                        }
+                                    },
+                                    "Deformation" : {
+                                        "Active" : false ,
+                                        "Enabled" : true ,
+                                        "ADActive" : false ,
+                                        "Factor" : 1.000000000000000e+00 ,
+                                        "Caption" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 44 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 0 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true ,
+                                            "Text" : "" 
+                                        }
+                                    },
+                                    "ColorScheme" : 0 ,
+                                    "ColorBy" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "ExtraIndex" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Index" : 0 ,
+                                            "PieceName" : "" ,
+                                            "UsePiece" : false 
+                                        },
+                                        "GroupSlot" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Slot" : "Any" ,
+                                            "PieceName" : "" ,
+                                            "UsePiece" : false 
+                                        },
+                                        "ColorName" : "ID" ,
+                                        "Property" : "" 
+                                    },
+                                    "Polygons" : {
+                                        "Active" : true ,
+                                        "AttPoly" : [  ],
+                                        "CutLine" : [ 
+                                            {
+                                                "Active" : true ,
+                                                "AttLine" : [ 
+                                                    {
+                                                        "Active" : true ,
+                                                        "Enabled" : true ,
+                                                        "Width" : 1 ,
+                                                        "Style" : 1 ,
+                                                        "Color" : "#000000FF" ,
+                                                        "Bool" : true 
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "ColorList" : [ 
+                                            {
+                                                "Active" : true ,
+                                                "Enabled" : true ,
+                                                "Global" : true ,
+                                                "MapSto" : [ 
+                                                    {
+                                                        "Key" : "ID" ,
+                                                        "Value" : {
+                                                            "Array" : [  ],
+                                                            "Index" : false 
+                                                        }
+                                                    }
+                                                ],
+                                                "Category" : "ID" ,
+                                                "CLabel" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : true ,
+                                                    "Text" : "" 
+                                                },
+                                                "Heading" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : true ,
+                                                    "Text" : "" 
+                                                }
+                                            }
+                                        ],
+                                        "CountText" : [ 
+                                            {
+                                                "Active" : true ,
+                                                "Enabled" : true ,
+                                                "Size" : 44 ,
+                                                "Family" : "Arial" ,
+                                                "Style" : 0 ,
+                                                "Color" : "#000000FF" ,
+                                                "Bool" : false ,
+                                                "Text" : "" 
+                                            }
+                                        ]
+                                    },
+                                    "Contour" : {
+                                        "Active" : false ,
+                                        "AttPoly" : [  ],
+                                        "CutLine" : [ 
+                                            {
+                                                "Active" : false ,
+                                                "AttLine" : [ 
+                                                    {
+                                                        "Active" : false ,
+                                                        "Enabled" : true ,
+                                                        "Width" : 1 ,
+                                                        "Style" : 1 ,
+                                                        "Color" : "#000000FF" ,
+                                                        "Bool" : true 
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "AttCont" : [ 
+                                            {
+                                                "Active" : false ,
+                                                "Enabled" : true ,
+                                                "Ramp" : 0 ,
+                                                "Minimum" : 1.797693134862316e+308 ,
+                                                "Maximum" : -1.797693134862316e+308 ,
+                                                "Interval" : 0.000000000000000e+00 ,
+                                                "MinAuto" : true ,
+                                                "MaxAuto" : true ,
+                                                "IntAuto" : true ,
+                                                "Reversed" : false ,
+                                                "AboveAuto" : true ,
+                                                "BelowAuto" : true ,
+                                                "Above" : "#ff0000FF" ,
+                                                "Below" : "#0000ffFF" ,
+                                                "MaxCaption" : 20 ,
+                                                "Log" : false ,
+                                                "Caption" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : true ,
+                                                    "Text" : "" 
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "Data" : {
+                                        "Active" : false ,
+                                        "Enabled" : true ,
+                                        "Data" : [ 
+                                            {
+                                                "Component" : 3 ,
+                                                "Quantity" : 0 ,
+                                                "Type" : 0 ,
+                                                "Extra" : 1 ,
+                                                "Stress" : false ,
+                                                "Log" : false ,
+                                                "Active" : false ,
+                                                "Keyword" : "displacement" ,
+                                                "GpData" : {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "displacement" 
+                                                },
+                                                "ZoneData" : {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "" 
+                                                },
+                                                "ZoneInterp" : {
+                                                    "Active" : false ,
+                                                    "Method" : 0 ,
+                                                    "RadRatio" : 7.500000000000000e-01 ,
+                                                    "Power" : 3.000000000000000e+00 ,
+                                                    "Tolerance" : 1.000000000000000e-07 ,
+                                                    "HideNull" : false 
+                                                },
+                                                "Source" : 1 
+                                            }
+                                        ],
+                                        "Gp" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Data" : [ 
+                                                {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "displacement" 
+                                                }
+                                            ]
+                                        },
+                                        "Zone" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Data" : [ 
+                                                {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "" 
+                                                }
+                                            ],
+                                            "Property" : "" 
+                                        },
+                                        "Interpolate" : {
+                                            "Active" : false ,
+                                            "Enabled" : true ,
+                                            "Caption" : {
+                                                "Active" : true ,
+                                                "Enabled" : true ,
+                                                "Size" : 44 ,
+                                                "Family" : "Arial" ,
+                                                "Style" : 0 ,
+                                                "Color" : "#000000FF" ,
+                                                "Bool" : true ,
+                                                "Text" : "" 
+                                            },
+                                            "Method" : 0 ,
+                                            "RadRatio" : 7.500000000000000e-01 ,
+                                            "Power" : 3.000000000000000e+00 ,
+                                            "Tolerance" : 1.000000000000000e-07 
+                                        },
+                                        "Source" : 1 ,
+                                        "CompressionPositive" : false 
+                                    },
+                                    "AttPoly" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Fill" : true ,
+                                        "Offset1" : 5.0000000e-01 ,
+                                        "Offset2" : 2.0000000e+00 ,
+                                        "Culling" : false ,
+                                        "PolyTrans" : 0 ,
+                                        "WireTrans" : 80 ,
+                                        "Line" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Width" : 1 ,
+                                            "Style" : 1 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true 
+                                        },
+                                        "Lighting" : true 
+                                    }
+                                }
+                            }
+                        ],
+                        "ID" : 1 ,
+                        "Name" : "Plot01" 
+                    }, 
+                    {
+                        "View" : {
+                            "Locked" : false ,
+                            "Perspective" : true ,
+                            "EyePosition" : { "x" : 4.996487478922103e+05  , "y" : 3.944598305193131e+06  , "z" : 6.182833483196001e+02 } ,
+                            "ViewCenter" : { "x" : 5.001013787988651e+05  , "y" : 3.946108615262411e+06  , "z" : 4.163439178699017e+02 } ,
+                            "Up" : { "x" : 5.459666298729689e-02  , "y" : 1.162378365447564e-01  , "z" : 9.917197032156042e-01 } ,
+                            "Magnification" : 1.000000000000000e+00 ,
+                            "FirstViewAuto" : false ,
+                            "MinClipPlaneDist" : -1.000000000000000e+10 ,
+                            "MaxClipPlaneDist" : 1.000000000000000e+10 ,
+                            "SpecAsOrientation" : false ,
+                            "OrientationIn" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                            "SyncToName" : "" 
+                        },
+                        "Properties" : {
+                            "AutoUpdate" : true ,
+                            "Outline" : {
+                                "Active" : true ,
+                                "Enabled" : true ,
+                                "Width" : 2 ,
+                                "Style" : 1 ,
+                                "Color" : "#000000FF" ,
+                                "Bool" : true 
+                            },
+                            "Background" : "#ffffffFF" ,
+                            "Active" : true ,
+                            "Legend" : {
+                                "Active" : true ,
+                                "Placement" : 0 ,
+                                "TargetSize" : {
+                                    "Width" : 25 ,
+                                    "Height" : 50 
+                                },
+                                "Position" : {
+                                    "X" : 66 ,
+                                    "Y" : 40 
+                                },
+                                "Title" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 55 ,
+                                    "Family" : "Times New Roman" ,
+                                    "Style" : 1 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Caption" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Heading" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 94 ,
+                                    "Family" : "Times New Roman" ,
+                                    "Style" : 3 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Copyright" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 40 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : true ,
+                                    "Text" : "" 
+                                },
+                                "Step" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "Time" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "Customer" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "View" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "ModelTime" : {
+                                    "Active" : true ,
+                                    "Enabled" : true ,
+                                    "Size" : 44 ,
+                                    "Family" : "Arial" ,
+                                    "Style" : 0 ,
+                                    "Color" : "#000000FF" ,
+                                    "Bool" : false ,
+                                    "Text" : "" 
+                                },
+                                "ViewDip" : false 
+                            },
+                            "Movie" : false ,
+                            "NextMovieIndex" : 1 ,
+                            "JobTitle" : {
+                                "Active" : true ,
+                                "Enabled" : true ,
+                                "Size" : 12 ,
+                                "Family" : "Arial" ,
+                                "Style" : 0 ,
+                                "Color" : "#000000FF" ,
+                                "Bool" : false ,
+                                "Text" : "" 
+                            },
+                            "ViewTitle" : {
+                                "Active" : true ,
+                                "Enabled" : true ,
+                                "Size" : 12 ,
+                                "Family" : "Arial" ,
+                                "Style" : 0 ,
+                                "Color" : "#000000FF" ,
+                                "Bool" : false ,
+                                "Text" : "Plot Title" 
+                            },
+                            "Target" : true 
+                        },
+                        "PlotItems" : [ 
+                            {
+                                "Name" : "axes" ,
+                                "Item" : {
+                                    "Active" : true ,
+                                    "Type" : 0 ,
+                                    "PIActive" : true ,
+                                    "ShowCaption" : false ,
+                                    "Title" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Size" : 55 ,
+                                        "Family" : "Times New Roman" ,
+                                        "Style" : 1 ,
+                                        "Color" : "#000000FF" ,
+                                        "Bool" : true ,
+                                        "Text" : "" 
+                                    },
+                                    "Transparency" : 70 ,
+                                    "TransActive" : false ,
+                                    "TransLocked" : true ,
+                                    "Range" : [  ],
+                                    "Axes" : {
+                                        "Active" : true ,
+                                        "XAxis" : {
+                                            "Color" : "#ff0000FF" ,
+                                            "PosLabel" : "X" ,
+                                            "NegLabel" : "" ,
+                                            "DrawPos" : true ,
+                                            "DrawNeg" : false 
+                                        },
+                                        "YAxis" : {
+                                            "Color" : "#00ff00FF" ,
+                                            "PosLabel" : "Y" ,
+                                            "NegLabel" : "" ,
+                                            "DrawPos" : true ,
+                                            "DrawNeg" : false 
+                                        },
+                                        "ZAxis" : {
+                                            "Color" : "#0000ffFF" ,
+                                            "PosLabel" : "Z" ,
+                                            "NegLabel" : "" ,
+                                            "DrawPos" : true ,
+                                            "DrawNeg" : false 
+                                        },
+                                        "Label" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 10 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 1 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : false ,
+                                            "Text" : "" 
+                                        },
+                                        "Size" : 0.000000000000000e+00 ,
+                                        "Scale" : 5 ,
+                                        "Fixed" : true ,
+                                        "Position" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                        "Screen" : {
+                                            "X" : 10 ,
+                                            "Y" : 10 
+                                        },
+                                        "ShowRot" : true ,
+                                        "ShowScale" : true ,
+                                        "ShowIPTrans" : true 
+                                    }
+                                }
+                            }, 
+                            {
+                                "Name" : "3dec-block" ,
+                                "Item" : {
+                                    "Active" : true ,
+                                    "Type" : 0 ,
+                                    "PIActive" : true ,
+                                    "ShowCaption" : true ,
+                                    "Title" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Size" : 55 ,
+                                        "Family" : "Times New Roman" ,
+                                        "Style" : 1 ,
+                                        "Color" : "#000000FF" ,
+                                        "Bool" : true ,
+                                        "Text" : "" 
+                                    },
+                                    "CutPlaneInfo" : {
+                                        "Active" : false ,
+                                        "On" : true ,
+                                        "Front" : false ,
+                                        "Back" : false ,
+                                        "Caption" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 44 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 0 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true ,
+                                            "Text" : "" 
+                                        },
+                                        "TypeName" : "None" ,
+                                        "SyncName" : "" ,
+                                        "Plane" : [  ]
+                                    },
+                                    "ClipBoxInfo" : {
+                                        "Active" : false ,
+                                        "Center" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                        "Dip" : 0.000000000000000e+00 ,
+                                        "DipDir" : 0.000000000000000e+00 ,
+                                        "Roll" : 0.000000000000000e+00 ,
+                                        "Radius" : { "x" : 1.000000000000000e+00  , "y" : 1.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                                        "Axis1Active" : true ,
+                                        "Axis2Active" : true ,
+                                        "Axis3Active" : true 
+                                    },
+                                    "Transparency" : 70 ,
+                                    "TransActive" : false ,
+                                    "TransLocked" : true ,
+                                    "Range" : [ 
+                                        {
+                                            "Active" : true ,
+                                            "RenderModeSpecific" : true ,
+                                            "ExtentModel" : true ,
+                                            "Type" : 1325527003 ,
+                                            "RangePlotItem" : [  ],
+                                            "Range" : [ 
+                                                {
+                                                    "SelfIndex" : 0 ,
+                                                    "ID" : 0 ,
+                                                    "Name" : "" ,
+                                                    "Union" : false ,
+                                                    "Selected" : false ,
+                                                    "Deselected" : false ,
+                                                    "UseHidden" : false ,
+                                                    "Elements" : [ 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=015" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=006" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=007" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=007" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=015" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=015" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "9,SLOT 1=006" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "2,SLOT 1=005" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "3,SLOT 1=008" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "3,SLOT 1=008" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "3,SLOT 1=008" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "4,SLOT 1=010" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "6,SLOT 1=014" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "2,SLOT 1=005" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "3,SLOT 1=008" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "4,SLOT 1=010" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "5,SLOT 1=013" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }, 
+                                                        {
+                                                            "Type" : 1283546004 ,
+                                                            "Element" : {
+                                                                "Not" : true ,
+                                                                "Extent" : false ,
+                                                                "By" : "" ,
+                                                                "Entries" : [ 
+                                                                    
+                                                                    {
+                                                                        "First" : "Default" ,
+                                                                        "Second" : "1,SLOT 1=002" 
+                                                                    }
+                                                                ],
+                                                                "And" : false ,
+                                                                "Only" : true ,
+                                                                "Matches" : 1 
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "ZoneFaces" : true ,
+                                    "Excavated" : false ,
+                                    "Walls" : false ,
+                                    "Map" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Map" : 0 ,
+                                        "Translate" : { "x" : 0.000000000000000e+00  , "y" : 0.000000000000000e+00  , "z" : 0.000000000000000e+00 } ,
+                                        "Scale" : { "x" : 1.000000000000000e+00  , "y" : 1.000000000000000e+00  , "z" : 1.000000000000000e+00 } ,
+                                        "Caption" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 44 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 0 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true ,
+                                            "Text" : "" 
+                                        }
+                                    },
+                                    "Deformation" : {
+                                        "Active" : false ,
+                                        "Enabled" : true ,
+                                        "ADActive" : false ,
+                                        "Factor" : 1.000000000000000e+00 ,
+                                        "Caption" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Size" : 44 ,
+                                            "Family" : "Arial" ,
+                                            "Style" : 0 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true ,
+                                            "Text" : "" 
+                                        }
+                                    },
+                                    "ColorScheme" : 0 ,
+                                    "ColorBy" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "ExtraIndex" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Index" : 0 ,
+                                            "PieceName" : "" ,
+                                            "UsePiece" : false 
+                                        },
+                                        "GroupSlot" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Slot" : "Any" ,
+                                            "PieceName" : "" ,
+                                            "UsePiece" : false 
+                                        },
+                                        "ColorName" : "Group" ,
+                                        "Property" : "" 
+                                    },
+                                    "Polygons" : {
+                                        "Active" : true ,
+                                        "AttPoly" : [  ],
+                                        "CutLine" : [ 
+                                            {
+                                                "Active" : true ,
+                                                "AttLine" : [ 
+                                                    {
+                                                        "Active" : true ,
+                                                        "Enabled" : true ,
+                                                        "Width" : 1 ,
+                                                        "Style" : 1 ,
+                                                        "Color" : "#000000FF" ,
+                                                        "Bool" : true 
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "ColorList" : [ 
+                                            {
+                                                "Active" : true ,
+                                                "Enabled" : true ,
+                                                "Global" : true ,
+                                                "MapSto" : [ 
+                                                    {
+                                                        "Key" : "Group" ,
+                                                        "Value" : {
+                                                            "Array" : [ 
+                                                                
+                                                                {
+                                                                    "Color" : "#2e8b56FF" ,
+                                                                    "Alias" : "" ,
+                                                                    "Label" : "Default=1,SLOT 1=002" ,
+                                                                    "Bool" : true ,
+                                                                    "Used2" : true ,
+                                                                    "Default" : false 
+                                                                }
+                                                                , 
+                                                                {
+                                                                    "Color" : "#ff0000FF" ,
+                                                                    "Alias" : "" ,
+                                                                    "Label" : "Default=2,SLOT 1=005" ,
+                                                                    "Bool" : true ,
+                                                                    "Used2" : true ,
+                                                                    "Default" : false 
+                                                                }
+                                                                , 
+                                                                {
+                                                                    "Color" : "#ff8000FF" ,
+                                                                    "Alias" : "" ,
+                                                                    "Label" : "Default=5,SLOT 1=013" ,
+                                                                    "Bool" : true ,
+                                                                    "Used2" : true ,
+                                                                    "Default" : false 
+                                                                }
+                                                            ],
+                                                            "Index" : false 
+                                                        }
+                                                    }
+                                                ],
+                                                "Category" : "Group" ,
+                                                "CLabel" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : true ,
+                                                    "Text" : "" 
+                                                },
+                                                "Heading" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : true ,
+                                                    "Text" : "" 
+                                                }
+                                            }
+                                        ],
+                                        "CountText" : [ 
+                                            {
+                                                "Active" : true ,
+                                                "Enabled" : true ,
+                                                "Size" : 44 ,
+                                                "Family" : "Arial" ,
+                                                "Style" : 0 ,
+                                                "Color" : "#000000FF" ,
+                                                "Bool" : false ,
+                                                "Text" : "" 
+                                            }
+                                        ]
+                                    },
+                                    "Contour" : {
+                                        "Active" : false ,
+                                        "AttPoly" : [  ],
+                                        "CutLine" : [ 
+                                            {
+                                                "Active" : false ,
+                                                "AttLine" : [ 
+                                                    {
+                                                        "Active" : false ,
+                                                        "Enabled" : true ,
+                                                        "Width" : 1 ,
+                                                        "Style" : 1 ,
+                                                        "Color" : "#000000FF" ,
+                                                        "Bool" : true 
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "AttCont" : [ 
+                                            {
+                                                "Active" : false ,
+                                                "Enabled" : true ,
+                                                "Ramp" : 0 ,
+                                                "Minimum" : 1.797693134862316e+308 ,
+                                                "Maximum" : -1.797693134862316e+308 ,
+                                                "Interval" : 0.000000000000000e+00 ,
+                                                "MinAuto" : true ,
+                                                "MaxAuto" : true ,
+                                                "IntAuto" : true ,
+                                                "Reversed" : false ,
+                                                "AboveAuto" : true ,
+                                                "BelowAuto" : true ,
+                                                "Above" : "#ff0000FF" ,
+                                                "Below" : "#0000ffFF" ,
+                                                "MaxCaption" : 20 ,
+                                                "Log" : false ,
+                                                "Caption" : {
+                                                    "Active" : true ,
+                                                    "Enabled" : true ,
+                                                    "Size" : 44 ,
+                                                    "Family" : "Arial" ,
+                                                    "Style" : 0 ,
+                                                    "Color" : "#000000FF" ,
+                                                    "Bool" : true ,
+                                                    "Text" : "" 
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "Data" : {
+                                        "Active" : false ,
+                                        "Enabled" : true ,
+                                        "Data" : [ 
+                                            {
+                                                "Component" : 3 ,
+                                                "Quantity" : 0 ,
+                                                "Type" : 0 ,
+                                                "Extra" : 1 ,
+                                                "Stress" : false ,
+                                                "Log" : false ,
+                                                "Active" : false ,
+                                                "Keyword" : "displacement" ,
+                                                "GpData" : {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "displacement" 
+                                                },
+                                                "ZoneData" : {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "" 
+                                                },
+                                                "ZoneInterp" : {
+                                                    "Active" : false ,
+                                                    "Method" : 0 ,
+                                                    "RadRatio" : 7.500000000000000e-01 ,
+                                                    "Power" : 3.000000000000000e+00 ,
+                                                    "Tolerance" : 1.000000000000000e-07 ,
+                                                    "HideNull" : false 
+                                                },
+                                                "Source" : 1 
+                                            }
+                                        ],
+                                        "Gp" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Data" : [ 
+                                                {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "displacement" 
+                                                }
+                                            ]
+                                        },
+                                        "Zone" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Data" : [ 
+                                                {
+                                                    "Component" : 3 ,
+                                                    "Quantity" : 0 ,
+                                                    "Type" : 0 ,
+                                                    "Extra" : 1 ,
+                                                    "Stress" : false ,
+                                                    "Log" : false ,
+                                                    "Active" : false ,
+                                                    "Keyword" : "" ,
+                                                    "Property" : "" 
+                                                }
+                                            ],
+                                            "Property" : "" 
+                                        },
+                                        "Interpolate" : {
+                                            "Active" : false ,
+                                            "Enabled" : true ,
+                                            "Caption" : {
+                                                "Active" : true ,
+                                                "Enabled" : true ,
+                                                "Size" : 44 ,
+                                                "Family" : "Arial" ,
+                                                "Style" : 0 ,
+                                                "Color" : "#000000FF" ,
+                                                "Bool" : true ,
+                                                "Text" : "" 
+                                            },
+                                            "Method" : 0 ,
+                                            "RadRatio" : 7.500000000000000e-01 ,
+                                            "Power" : 3.000000000000000e+00 ,
+                                            "Tolerance" : 1.000000000000000e-07 
+                                        },
+                                        "Source" : 1 ,
+                                        "CompressionPositive" : false 
+                                    },
+                                    "AttPoly" : {
+                                        "Active" : true ,
+                                        "Enabled" : true ,
+                                        "Fill" : true ,
+                                        "Offset1" : 5.0000000e-01 ,
+                                        "Offset2" : 2.0000000e+00 ,
+                                        "Culling" : false ,
+                                        "PolyTrans" : 0 ,
+                                        "WireTrans" : 80 ,
+                                        "Line" : {
+                                            "Active" : true ,
+                                            "Enabled" : true ,
+                                            "Width" : 1 ,
+                                            "Style" : 1 ,
+                                            "Color" : "#000000FF" ,
+                                            "Bool" : true 
+                                        },
+                                        "Lighting" : true 
+                                    }
+                                }
+                            }
+                        ],
+                        "ID" : 2 ,
+                        "Name" : "Plot02" 
+                    }
+                ],
+                "Entry" : {
+                    "ControlSets" : [ 
+                        {
+                            "Name" : "ItemListControl" ,
+                            "Set" : {
+                                "Index" : 0 ,
+                                "Active" : true ,
+                                "ListCaptionHidden" : false 
+                            }
+                        }, 
+                        {
+                            "Name" : "FishGlobals" ,
+                            "Set" : {
+                                "Index" : 1 ,
+                                "Active" : false 
+                            }
+                        }, 
+                        {
+                            "Name" : "ViewShiftControl" ,
+                            "Set" : {
+                                "Index" : 2 ,
+                                "Active" : true ,
+                                "Hidden" : false 
+                            }
+                        }, 
+                        {
+                            "Name" : "ViewStatsControl" ,
+                            "Set" : {
+                                "Index" : 3 ,
+                                "Active" : false ,
+                                "InfoCaptionHidden" : false 
+                            }
+                        }, 
+                        {
+                            "Name" : "InfoControl" ,
+                            "Set" : {
+                                "Index" : 4 ,
+                                "Active" : true ,
+                                "Hidden" : false 
+                            }
+                        }
+                    ],
+                    "TabState" : [ 
+                        {
+                            "Name" : "Plot01" ,
+                            "TabWidget" : [ 
+                                {
+                                    "States" : [ 
+                                        {
+                                            "First" : "ItemListControl" ,
+                                            "Second" : 4 
+                                        }, 
+                                        {
+                                            "First" : "FishGlobals" ,
+                                            "Second" : 3 
+                                        }, 
+                                        {
+                                            "First" : "ViewShiftControl" ,
+                                            "Second" : 4 
+                                        }, 
+                                        {
+                                            "First" : "ViewStatsControl" ,
+                                            "Second" : 3 
+                                        }, 
+                                        {
+                                            "First" : "InfoControl" ,
+                                            "Second" : 4 
+                                        }
+                                    ],
+                                    "Stretch" : -1 
+                                }
+                            ],
+                            "Active" : true 
+                        }, 
+                        {
+                            "Name" : "+" ,
+                            "TabWidget" : [  ],
+                            "Active" : false 
+                        }
+                    ]
+                },
+                "Views" : [  ]
+            }
+        }, 
+        {
+            "Name" : "Project" ,
+            "Entry" : {
+                "useResults" : true ,
+                "movieOutDir" : "" ,
+                "movieXRes" : 1920 ,
+                "movieYRes" : 1080 ,
+                "result2Files" : [  ],
+                "save2Files" : [  ],
+                "plots2" : [  ],
+                "datafile" : "" ,
+                "movieIndex" : 1 ,
+                "template" : "%1_%2" 
+            }
+        }, 
+        {
+            "Name" : "SEL" ,
+            "Entry" : { }
+        }
+    ],
+    "Terminal" : {
+        "MoveLists" : true ,
+        "LineLimit" : 17 
+    },
+    "ColorMap" : {
+        "EMaps" : [ 
+            {
+                "Key" : "ID" ,
+                "Value" : [  ]
+            }, 
+            {
+                "Key" : "Default" ,
+                "Value" : [  ]
+            }, 
+            {
+                "Key" : "Group" ,
+                "Value" : [ 
+                    {
+                        "Key" : "Default=8,SLOT 1=001" ,
+                        "Value" : {
+                            "Color" : "#00ffffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=4,SLOT 1=008" ,
+                        "Value" : {
+                            "Color" : "#ff00d5FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=012" ,
+                        "Value" : {
+                            "Color" : "#aa00ffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=1,SLOT 1=002" ,
+                        "Value" : {
+                            "Color" : "#2e8b56FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=2,SLOT 1=005" ,
+                        "Value" : {
+                            "Color" : "#ff0000FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=009" ,
+                        "Value" : {
+                            "Color" : "#ff4000FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=011" ,
+                        "Value" : {
+                            "Color" : "#b7001fFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=010" ,
+                        "Value" : {
+                            "Color" : "#0080ffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=013" ,
+                        "Value" : {
+                            "Color" : "#ff8000FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=014" ,
+                        "Value" : {
+                            "Color" : "#663333FF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=015" ,
+                        "Value" : {
+                            "Color" : "#4f632dFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=016" ,
+                        "Value" : {
+                            "Color" : "#50755eFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=017" ,
+                        "Value" : {
+                            "Color" : "#6666ffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=018" ,
+                        "Value" : {
+                            "Color" : "#5500ffFF" ,
+                            "Alias" : "" 
+                        }
+                    }, 
+                    {
+                        "Key" : "Default=5,SLOT 1=019" ,
+                        "Value" : {
+                            "Color" : "#0000ffFF" ,
+                            "Alias" : "" 
+                        }
+                    }
+                ]
+            }, 
+            {
+                "Key" : "Group Slot SLOT 1" ,
+                "Value" : [  ]
+            }, 
+            {
+                "Key" : "Group Slot Default" ,
+                "Value" : [  ]
+            }
+        ]
+    },
+    "Layout" : {
+        "PaneAction" : [ 
+            "Console" ,
+            "IPython Console  " ,
+            "Project" 
+        ],
+        "State" : "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" 
+    },
+    "CPVisible" : true ,
+    "PaneContents" : { }
+}
