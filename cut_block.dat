@@ -4,25 +4,27 @@ model random 10000
 model large-strain off
 
 ; 导入几何
-block import filename 'GVol_Rigid_Binary40.3dgrid'
+block import filename 'new80.3dgrid'
 
 ; 设置接触以模拟塌落
 block contact reset  ; 清除默认接触
 block tolerance 1e-4  ; 设置容差
-;block contact generate-sub tolerance 1e-4  ; 生成子接触
+block contact generate-sub tolerance 1e-4  ; 生成子接触
 block group '8' range position-z 267.600 272.600
 
 ; 列出group '8'中的块体数量
-;block list group 
+block list group 
 
 ;block group '8'
 
 ;block list position range position-z 267.600 272.600
 ;block list position range id 9
 block list group range id 9
-block list group range group 'Default 8, SLOT 1 009'  ; 和block list group range id 9不一致
-block list information range id 9
+block list group range group 'Default 8=SLOT 1 009'  ; 和block list group range id 9不一致
+
+;block list information range id 9
 ;block list information range group 'Default 8, SLOT 1 009'
+;以下先忽略
 ;block densify segments 2 2 2 range id 9;可能densify 适用于rigid
 ;block densify tetrahedra range id 9
 ;block densify segments 2 2 2 range group 'Default 8, SLOT 1 009'

@@ -4,12 +4,12 @@ model random 10000
 model large-strain off
 
 ; 导入几何
-block import filename 'new80.3dgrid'
+block import filename 'mmm_GVol_Rigid_Binary80.3dgrid'
 
 ; 设置接触以模拟塌落
 block contact reset  ; 清除默认接触
 block tolerance 1e-4  ; 设置容差
-block contact generate-sub tolerance 1e-4  ; 生成子接触
+;block contact generate-sub tolerance 1e-4  ; 生成子接触
 
 block group '1' range position-z 527.600 745.958
 block group '2' range position-z 477.600 527.600
@@ -29,14 +29,14 @@ block group '7' range position-z 272.600 280.600
 block hide range group '7'
 
 block group '8' range position-z 267.600 272.600
-block hide range group '8'
+;block hide range group '8'
 block group '10' range position-z 265 267.600
 ;block group '9' range position-z 265 267.600 not position-x 500073.830 500249.830 position-y 3945646.627 3947079.882 position-z 220 226
-;block hide range group '9'
+block hide range group '10'
 block group '31' range position-z 262.400 265
-;block hide range group '10'
+block hide range group '31'
 block group '9' range position-z 212.400 262.400
-;block hide range group '11'
+block hide range group '9'
 
 ;煤层一
 ;block group '12' range position-x 500124.597 500304.897 position-y 3945646.627 3945823.227 position-z 265 267.600
@@ -51,6 +51,7 @@ block group '18' range position-x 500124.597 500304.897 position-y 3946523.227 3
 block group '19' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 265 267.600
 block group '20' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 265 267.600
 ;block group '23' range position-x 500124.597 500304.897 position-y 3946823.227 3947079.882 position-z 265 267.600
+;block hide range poxition-z  265 267.600
 
 ;煤层二
 ;block group '24' range position-x 500124.597 500304.897 position-y 3945646.627 3945823.227 position-z 262.400 265
@@ -65,8 +66,31 @@ block group '28' range position-x 500124.597 500304.897 position-y 3946523.227 3
 block group '29' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 262.400 265
 block group '30' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 262.400 265
 ;block group '34' range position-x 500124.597 500304.897 position-y 3946823.227 3947079.882 position-z 262.400 265
+;block hide range poxition-z  262.400 265
+;block hide off
 
-block hide off
+
+fish define v_cut_plane
+  x_start = 500124.597
+  x_end = 500344.897
+  z_start = 267.6
+  z_end = 272.6
+  y_start = 3945863.227
+  y_end = 3946863.227
+  ;local x_len = x_end - x_start
+  local x_center = (x_start + x_end)/2
+  ;local y_len = y_end _ y_start
+  local y_center = (y_start + y_end)/2
+  ;loop n(1,num)
+  command
+    block cut joint-set dip 90 dip-direction 90 origin @x_center 0 0 number 13 spacing 20
+    block cut joint-set dip 90 dip-direction 0 origin 0 @y_center 0 number 54 spacing 20
+    
+  endcommand
+end
+[v_cut_plane]
+
+block zone generate edgelength 80 
 
 model save 'mmm1'
 ;call '2mmm.txt'
