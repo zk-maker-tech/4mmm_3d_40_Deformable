@@ -2,44 +2,28 @@
 model new
 model random 10000
 model large-strain off
-
+block tolerance 1e-4
 ; 导入几何
 block import filename 'mmm_GVol_Rigid_Binary80.3dgrid'
 
 ; 设置接触以模拟塌落
-block contact reset  ; 清除默认接触
+;block contact reset  ; 清除默认接触
 block tolerance 1e-4  ; 设置容差
 ;block contact generate-sub tolerance 1e-4  ; 生成子接触
 
+;分成11组
 block group '1' range position-z 527.600 745.958
 block group '2' range position-z 477.600 527.600
 block group '3' range position-z 387.600 477.600
 block group '4' range position-z 300.600 387.600
 block group '5' range position-z 290.600 300.600
-
 block group '6' range position-z 280.600 290.600
-
-block hide range group '1'
-block hide range group '2'
-block hide range group '3'
-block hide range group '4'
-block hide range group '5'
-block hide range group '6'
 block group '7' range position-z 272.600 280.600
-block hide range group '7'
-
 block group '8' range position-z 267.600 272.600
-;block hide range group '8'
 block group '10' range position-z 265 267.600
-;block group '9' range position-z 265 267.600 not position-x 500073.830 500249.830 position-y 3945646.627 3947079.882 position-z 220 226
-block hide range group '10'
 block group '31' range position-z 262.400 265
-block hide range group '31'
 block group '9' range position-z 212.400 262.400
-block hide range group '9'
 
-;煤层一
-;block group '12' range position-x 500124.597 500304.897 position-y 3945646.627 3945823.227 position-z 265 267.600
 block group '11' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 265 267.600
 block group '12' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 265 267.600
 block group '13' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 265 267.600
@@ -50,11 +34,8 @@ block group '17' range position-x 500124.597 500304.897 position-y 3946423.227 3
 block group '18' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 265 267.600
 block group '19' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 265 267.600
 block group '20' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 265 267.600
-;block group '23' range position-x 500124.597 500304.897 position-y 3946823.227 3947079.882 position-z 265 267.600
-;block hide range poxition-z  265 267.600
 
 ;煤层二
-;block group '24' range position-x 500124.597 500304.897 position-y 3945646.627 3945823.227 position-z 262.400 265
 block group '21' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 262.400 265
 block group '22' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 262.400 265
 block group '23' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 262.400 265
@@ -65,34 +46,145 @@ block group '27' range position-x 500124.597 500304.897 position-y 3946423.227 3
 block group '28' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 262.400 265
 block group '29' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 262.400 265
 block group '30' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 262.400 265
-;block group '34' range position-x 500124.597 500304.897 position-y 3946823.227 3947079.882 position-z 262.400 265
-;block hide range poxition-z  262.400 265
-;block hide off
 
+fish define auto_join_blocks_sequence
+    ; 定义包含 31 个组的数组
+    array visible_sequence(31)
+    i = 1
+    loop i (1,31)
+        visible_sequence(i) = i
+    endloop
 
-fish define v_cut_plane
-  x_start = 500124.597
-  x_end = 500344.897
-  z_start = 267.6
-  z_end = 272.6
-  y_start = 3945863.227
-  y_end = 3946863.227
-  ;local x_len = x_end - x_start
-  local x_center = (x_start + x_end)/2
-  ;local y_len = y_end _ y_start
-  local y_center = (y_start + y_end)/2
-  ;loop n(1,num)
+    ; 循环执行拼接
+    step = 1
+    loop step (1,31)
+        visible_layer = visible_sequence(step)
+
+        ; 取消所有隐藏
+        command
+            block hide off
+        endcommand
+
+        ; 隐藏除当前层以外的 group（1 到 31）
+        j = 1
+        loop j (1,31)
+            if j # visible_layer
+                command
+                    block hide range group [string(j)]
+                endcommand
+            endif
+        endloop
+
+        ; 拼接当前可见层
+        command
+            block join on
+        endcommand
+    endloop
+
+    ; 全部显示
+    command
+        block hide off
+    endcommand
+end
+[auto_join_blocks_sequence]
+
+fish define do_layer_cut
+  ; ===== 基本参数定义 =====
+  local x_min = 500084.597
+  local x_max = 500344.897
+  local y_min = 3945783.227
+  local y_max = 3946863.227
+
+  local x_center = (x_min + x_max) / 2
+  local y_center = (y_min + y_max) / 2
+
+  local x_shift = x_center - 10
+  local y_shift = y_center - 10
+
+  ; ===== 第一步：隐藏边界区域、底部所有组，并进行边界切割 =====
   command
-    block cut joint-set dip 90 dip-direction 90 origin @x_center 0 0 number 13 spacing 20
-    block cut joint-set dip 90 dip-direction 0 origin 0 @y_center 0 number 54 spacing 20
-    
+    ; 隐藏第9~31组
+    block hide off
+  endcommand
+
+  local i = 9
+  loop i (9, 31)
+    command
+      block hide range group [string(i)]
+    endcommand
+  endloop
+
+  command
+    ; 边界切割
+    block cut joint-set dip 90 dip-direction 90 origin 500074.597 0 0
+    block cut joint-set dip 90 dip-direction 90 origin 500344.897 0 0
+    block hide range position-x 400084.597 500074.597
+    block hide range position-x 500344.897 600344.897
+
+    block cut joint-set dip 90 dip-direction 0 origin 0 3945783.227 0
+    block cut joint-set dip 90 dip-direction 0 origin 0 3946863.227 0
+    block hide range position-y 2945783.227 3945783.227
+    block hide range position-y 3946863.227 4946863.227
+  endcommand
+
+  ; ===== 第二步：切割偶数组（2,4,6,8） =====
+  command
+    block hide range group '1'
+    block hide range group '3'
+    block hide range group '5'
+    block hide range group '7'
+
+    block cut joint-set dip 90 dip-direction 90 origin @x_center 0 0 number 11 spacing 20
+    block cut joint-set dip 90 dip-direction 0 origin 0 @y_center 0 number 53 spacing 20
+  endcommand
+
+  ; ===== 第三步：切割奇数组（1,3,5,7） =====
+  command
+    block hide off
+  endcommand
+
+  i = 9
+  loop i (9, 31)
+    command
+      block hide range group [string(i)]
+    endcommand
+  endloop
+
+  command
+    block hide range position-x 400084.597 500074.597
+    block hide range position-x 500344.897 600344.897
+    block hide range position-y 2945783.227 3945783.227
+    block hide range position-y 3946863.227 4946863.227
+
+    block hide range group '2'
+    block hide range group '4'
+    block hide range group '6'
+    block hide range group '8'
+
+    block cut joint-set dip 90 dip-direction 90 origin @x_shift 0 0 number 11 spacing 20
+    block cut joint-set dip 90 dip-direction 0 origin 0 @y_shift 0 number 53 spacing 20
+  endcommand
+
+  ; ===== 最后一步：全部显示 =====
+  command
+    block hide off
   endcommand
 end
-[v_cut_plane]
 
-block zone generate edgelength 80 
+[do_layer_cut]
 
+model save 'mmm0'
+;block contact reset
+;block contact generate-sub
+block zone generate edgelength 5 range id-list 38906  30341 26510
+
+block zone generate edgelength 40 
+
+
+
+;block join on
+;model list ;显示模型信息
 model save 'mmm1'
-;call '2mmm.txt'
+call '2mmm.txt'
 
 
