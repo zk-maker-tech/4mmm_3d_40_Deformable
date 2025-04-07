@@ -1,13 +1,8 @@
 model new
 model restore 'mmm1'
 
-block contact jmodel assign mohr
-block contact property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
-block contact material-table default property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
-
 block zone cmodel assign elastic
 ;原始
-;block zone property dens 2530 young 8.64E+09 poisson 0.24 range group '1'
 block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '1'
 block zone property dens 2530 young 8.64E+09 poisson 0.24 range group '2'
 block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '3'
@@ -16,8 +11,6 @@ block zone property dens 2600 young 6.20E+09 poisson 0.27 range group '5'
 block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '6'
 block zone property dens 2530 young 8.64E+09 poisson 0.24 range group '7'
 block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '8'
-;block zone property dens 1400 young 3.60E+09 poisson 0.32 range group '9'
-;block zone property dens 1400 young 3.60E+09 poisson 0.32 range group '10'
 block zone property dens 2580 young 6.70E+09 poisson 0.26 range group '9'
 
 fish define set_properties
@@ -37,6 +30,20 @@ block contact jmodel assign mohr  ; 使用 Mohr 模型
 block contact property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
 block contact material-table default property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
 
+model grav 0 0 -10
+block insitu topo ratio-x 0.5 ratio-y 0.5
+;block insitu stress 0 0 0 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '1'
+;block insitu stress -152850.6 -76425.3 -152850.6 0,0,0 gradient-z 12650  12650  25300  0,0,0 range group '2'
+;block insitu stress 17500 17500 35000 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '3'
+;block insitu stress -18335.8 -18335.8 -36671.6 0,0,0 gradient-z 12900  12900  25800  0,0,0 range group '4'
+;block insitu stress 26200 26200 52400 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '5'
+;block insitu stress 26200 26200 52400 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '6'
+;block insitu stress -136675.3 -136675.3 -273350.6 0,0,0 gradient-z 12650  12650  25300  0,0,0 range group '7'
+;block insitu stress 29000 29000 58000 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '8'
+;block insitu stress -2841148 -2841148 -5682296 0,0,0 gradient-z 7000  7000  14000  0,0,0 range group '9'
+;block insitu stress -2841148 -2841148 -5682296 0,0,0 gradient-z 7000  7000  14000  0,0,0 range group '10'
+;block insitu stress 11844.2 11844.2 23688.4 0,0,0 gradient-z 12900  12900  25800  0,0,0 range group '11'
+
 ; 边界条件和重力
 block gridpoint apply velocity-x 0 range position-x  500633,500635
 block gridpoint apply velocity-x 0 range position-x  499689,499690
@@ -44,25 +51,19 @@ block gridpoint apply velocity-y 0 range position-y  3947079,3947080
 block gridpoint apply velocity-y 0 range position-y  3945646,3945647
 block gridpoint apply velocity-z 0 range position-z  212,213
 
-model grav 0 0 -10
+
 model solve ratio 1e-4
-
-
-
+model save 'mmm2'
 block zone cmodel assign mohr-coulomb
-
 ;原始
-;block zone property dens 2530 young 8.64E+09 poisson 0.24 fric 46 cohesion 5.6E+06 ten 3.36E+06 range group '1'
 block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '1'
-block zone property dens 2530 young 8.64E+09 poisson 0.24 fric 46 cohesion 5.6E+06 ten 3.36E+06  range group '2'
+block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range group '2'
 block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '3'
 block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.7E+06 range group '4'
 block zone property dens 2600 young 6.20E+09 poisson 0.27  fric 34 cohesion 4.2E+06 ten 2.52E+06 range group '5'
 block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '6'
 block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range group '7'
 block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '8'
-;block zone property dens 1400 young 3.60E+09 poisson 0.32 fric 30 cohesion 2.8E+06 ten 1.68E+06 range group '9'
-;block zone property dens 1400 young 3.60E+09 poisson 0.32 fric 30 cohesion 2.8E+06 ten 1.68E+06 range group '10'
 block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.7E+06 range group '9'
 
 fish define set_properties_mohr_coulomb
@@ -76,15 +77,13 @@ end
 [set_properties_mohr_coulomb]
 
 block contact jmodel assign mohr 
-
 ;原始
 block contact property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 1e6 friction 30 tension 1e5  ; 统一接触属性
 block contact property stiffness-normal 1e9 stiffness-shear 1e9 cohesion 1e3 friction 0 tension 1e2 range position-x 500073 500249 position-y 3945828 3946865 position-z 267.6 300.6
 block contact property stiffness-normal 1e10 stiffness-shear 1e10 cohesion 1e4 friction 10 tension 1e3 range position-z 300.6 746
-
 block contact material-table default property stiffness-normal 1e9 stiffness-shear 1e9 cohesion 0 friction 0 tension 0
 
-model solve ratio 1e-4;mohr_coulomb模型平衡一次
+;model solve ratio 1e-4;mohr_coulomb模型平衡一次
 
 fish define get_ini_stress
       loop foreach local zp block.zone.list
@@ -94,6 +93,6 @@ fish define get_ini_stress
 end
 [get_ini_stress]
 
-model save 'mmm2'
+
 
 call '3mmm.txt'
