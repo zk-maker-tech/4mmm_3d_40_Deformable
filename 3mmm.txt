@@ -1,5 +1,5 @@
 model new
-model restore 'mmm2'
+model restore 'mmm2.2'
 
 block gridpoint initialize displacement-x 0
 block gridpoint initialize displacement-y 0
@@ -21,8 +21,8 @@ fish define get_disp
     starty=3945646.627
     endy=3947079.882
     stenx=500214.747
-    stenz1=267.6    ;lmmediate roof
-    stenz2=265    ;floor
+    stenz1=268   ;lmmediate roof
+    stenz2=264.5    ;floor
     
     loop while starty<=endy
              p1=block.gp.near(stenx,starty,stenz1)
@@ -34,7 +34,8 @@ fish define get_disp
     end_loop 
 end
 
-
+;block history name 'p1' displacement-z position 3945452.171 500201.236 693.573
+;block history name 'p2' displacement-z position 3945475.377 500211.165 697.395
 fish define get_disp2
   
     monitor_points = array(30,3)  ; 30个点，每个点有3个坐标值 (y, x, z)
@@ -194,16 +195,16 @@ fish define get_stress
     end_loop 
 end
 
-fish define mining
-  loop n (1,20)
+fish define mining1
+  loop n (1,10)
     x1=n+10
     x2=n*100
-    ss='1mining_'+string(x2)+'m'
+    ss='2mining_'+string(x2)+'m'
     command 
         block delete range group @x1
-        model step 2000
+        model step 50
+        ;model solve ratio 1e-4
         [stress_concentration_factor]
-        ;[monitor_disp]
         [get_disp2]
         [get_disp]
         [get_stress]
@@ -211,6 +212,28 @@ fish define mining
     endcommand
   endloop
 end
-[mining]
-model step 2000
+[mining1]
+model step 50
+;model solve ratio 1e-4
 model save 'mmm3'
+
+;fish define mining2
+;  loop n (11,20)
+;    x1=n+10
+;    x2=n*100
+;    ss='1mining_'+string(x2)+'m'
+;    command 
+;        block delete range group @x1
+;        model step 2000
+;        [stress_concentration_factor]
+;        [get_disp2]
+;        [get_disp]
+;        [get_stress]
+;        model save @ss
+;    endcommand
+;  endloop
+;end
+;[mining2]
+;model step 2000
+
+;model save 'mmm4'
