@@ -34,8 +34,124 @@ fish define get_disp
     end_loop 
 end
 
-;block history name 'p1' displacement-z position 3945452.171 500201.236 693.573
-;block history name 'p2' displacement-z position 3945475.377 500211.165 697.395
+
+
+define read_from_file(name)
+    local f, data0, data, m, i, line, line_sim, line_spl
+
+    ; 打开文件
+    f = file.open(name, 'r')
+    data0 = file.read(f)
+    file.close(f)
+
+    ; 初始化返回数据列表
+    data = list
+    m = list.size(data0)
+
+    ; 调试：输出总行数
+    ;io.out("Total lines in file: " + string(m))
+
+    ; 跳过标题行，从第2行开始
+    loop i (2, m)
+        line = data0(i)
+        line_sim = string.simplify(line)
+        line_spl = string.split(line_sim, ',')
+        
+        ; 调试：输出解析过程
+        ;io.out("Line " + string(i-1) + " raw: " + line)
+        ;io.out("Line " + string(i-1) + " simplified: " + line_sim)
+        ;io.out("Line " + string(i-1) + " split: " + string(line_spl))
+
+        if list.size(line_spl) >= 4 then
+            data('end') = line_spl
+        else
+            io.out("Warning: Skipping invalid line " + string(i-1))
+        endif
+    end_loop
+
+    ;io.out("Parsed data size: " + string(list.size(data)))
+    ;io.out("Parsed data: " + string(data))
+
+    return data
+end
+
+
+[read_from_file("points.txt")]
+
+
+define filter_z_data(input_data)
+    local filtered, i, row, name
+    
+    ; 初始化返回数据列表
+    filtered = list
+    
+    ; 获取输入数据大小
+    local size = list.size(input_data)
+    
+    ; 遍历每一行数据
+    loop i (1, size)
+        row = input_data(i)
+        ; 获取第一列（名称列）
+        name = row(1)
+        
+        ; 检查名称中是否包含"Z"
+        if string.find(name, "Z") > 0 then
+            filtered('end') = row
+            ; 将row的元素拼接为字符串
+            local row_str = row(1) + "," + row(2) + "," + row(3) + "," + row(4)
+            ;io.out("Found Z data: " + row_str)
+        endif
+    end_loop
+    
+    ;io.out("Total Z data found: " + string(list.size(filtered)))
+    return filtered
+end
+
+; 修改后的 get_disp2 函数
+fish define get_disp3(data_file)
+    ; 创建30x3的数组用于存储监测点坐标
+    monitor_points = array(30, 3)  ; 30个点，每个点有3个坐标值 (X, Y, Z)
+    
+     ; 从文件中读取数据
+    local data = read_from_file(data_file)
+    local points_data = filter_z_data(data)
+   
+    local num_points = list.size(points_data)
+    
+    ; 检查是否正好有30个点
+    if num_points != 30 then
+        io.out("Error: Expected 30 points, but found " + string(num_points) + " points in file")
+        exit
+    endif
+    
+    ; 填充 monitor_points 数组
+    loop local i (1, 30)
+        local row = points_data(i)  ; 获取第i行数据
+        ; row(2), row(3), row(4) 分别是 X, Y, Z 坐标，转换为浮点数
+        monitor_points(i, 1) = float(row(2))  ; X 坐标
+        monitor_points(i, 2) = float(row(3))  ; Y 坐标
+        monitor_points(i, 3) = float(row(4))  ; Z 坐标
+    end_loop
+    
+    ; 遍历所有监测点（保持原有逻辑）
+    loop local j (1, 30)
+        local x = monitor_points(j, 2)
+        local y = monitor_points(j, 1)
+        local z = monitor_points(j, 3)
+        
+        ; 找到最近的网格点
+        local p = block.gp.near(x, y, z)
+        
+        if p == null then
+            ;io.out("Warning: 无法找到坐标 (" + string(x) + ", " + string(y) + ", " + string(z) + ") 的网格点")
+            table('top', y) = 0
+        else
+            table('top', y) = block.gp.disp.z(p)
+        endif
+    end_loop
+end
+
+
 fish define get_disp2
   
     monitor_points = array(30,3)  ; 30个点，每个点有3个坐标值 (y, x, z)
@@ -195,6 +311,50 @@ fish define get_stress
     end_loop 
 end
 
+define read_and_create_monitor_histories(filename)
+    ; 读取文件
+    local data = read_from_file(filename)
+    local num_points = list.size(data)  ; 减去标题行
+    local monitor_points = array(num_points, 3)  ; 动态分配数组大小
+    local point_names = array(num_points)       ; 存储点名称
+    ; 跳过标题行，从第2行开始
+    loop local i (1, list.size(data))
+        local line = data(i)                    ; 获取每行数据
+        local idx = i - 1                       ; 数组索引从1开始
+        point_names(i) = line(1)              ; 第1列为名称
+        monitor_points(i, 2) = float(line(2)) ; 第2列为x
+        monitor_points(i, 1) = float(line(3)) ; 第3列为y
+        monitor_points(i, 3) = float(line(4)) ; 第4列为z
+       
+    end_loop
+    ; 创建历史记录
+    loop local j (1, num_points)
+        local x = monitor_points(j, 1)
+        local y = monitor_points(j, 2)
+        local z = monitor_points(j, 3)
+        local name = point_names(j)
+        io.out("Point " + name + ": x=" + string(x) + ", y=" + string(y,0,'',3,'f') + ", z=" + string(z))
+        ; 检查最近的网格点是否存在
+        local gp = block.gp.near(x, y, z)
+        if gp = 0 then
+            io.out("Skipping " + name + " at (" + string(x) + ", " + string(y,0,'',3,'f') + ", " + string(z) + ") - No gridpoint found")
+            continue  ; 跳过此点，继续下一个
+        endif
+        io.out("Creating history for " + name + " at " + string(x) + "," + string(y,0,'',3,'f') + "," + string(z))
+        command 
+            block history name @name  displacement-z position @x @y @z
+        endcommand
+       
+    end_loop
+
+    ; 可选：返回数据以供检查
+    return monitor_points
+end
+
+; 调用函数，假设文件名为 points.txt
+[read_and_create_monitor_histories("points.txt")]
+
+
 fish define mining1
   loop n (1,10)
     x1=n+10
@@ -205,7 +365,7 @@ fish define mining1
         model step 50
         ;model solve ratio 1e-4
         [stress_concentration_factor]
-        [get_disp2]
+        [get_disp3("points.txt")]
         [get_disp]
         [get_stress]
         model save @ss
