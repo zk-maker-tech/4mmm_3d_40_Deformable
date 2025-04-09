@@ -3,28 +3,17 @@ model restore 'mmm1'
 
 block zone cmodel assign elastic
 ;原始
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '1'
-block zone property dens 2530 young 8.64E+09 poisson 0.24 range group '2'
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '3'
-block zone property dens 2580 young 6.70E+09 poisson 0.26 range group '4'
-block zone property dens 2600 young 6.20E+09 poisson 0.27 range group '5'
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '6'
-block zone property dens 2530 young 8.64E+09 poisson 0.24 range group '7'
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '8'
-block zone property dens 2580 young 6.70E+09 poisson 0.26 range group '9'
-
-fish define set_properties
-    local i = 10
-    loop while i <= 31
-        local group_name = string(i)  ; 转换为字符串
-        ;io.out("asign properties=> "+group_name)
-        command
-            block zone property dens 1400 young 3.60E+09 poisson 0.32 range group @group_name
-        endcommand
-        i = i + 1
-    endloop
-end
-[set_properties]
+block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '24'
+block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '25'
+block zone property dens 2530 young 8.64E+09 poisson 0.24 range position-z 477.600 527.600
+block zone property dens 2600 young 5.80E+09 poisson 0.31 range position-z 387.600 477.600
+block zone property dens 2580 young 6.70E+09 poisson 0.26 range position-z 300.600 387.600
+block zone property dens 2600 young 6.20E+09 poisson 0.27 range position-z 290.600 300.600
+block zone property dens 2600 young 5.80E+09 poisson 0.31 range position-z 280.600 290.600
+block zone property dens 2530 young 8.64E+09 poisson 0.24 range position-z 272.600 280.600
+block zone property dens 2600 young 5.80E+09 poisson 0.31 range position-z 267.600 272.600
+block zone property dens 1400 young 3.60E+09 poisson 0.32 range position-z 262.400 267.600
+block zone property dens 2580 young 6.70E+09 poisson 0.26 range position-z 212.400 262.400
 
 block contact jmodel assign mohr  ; 使用 Mohr 模型
 block contact property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
@@ -51,30 +40,21 @@ block gridpoint apply velocity-y 0 range position-y  3947079,3947080
 block gridpoint apply velocity-y 0 range position-y  3945646,3945647
 block gridpoint apply velocity-z 0 range position-z  212,213
 
-
 model solve ratio 1e-4
-model save 'mmm2'
+model save 'mmm2.1'
 block zone cmodel assign mohr-coulomb
 ;原始
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '1'
-block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range group '2'
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '3'
-block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.7E+06 range group '4'
-block zone property dens 2600 young 6.20E+09 poisson 0.27  fric 34 cohesion 4.2E+06 ten 2.52E+06 range group '5'
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '6'
-block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range group '7'
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '8'
-block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.7E+06 range group '9'
-
-fish define set_properties_mohr_coulomb
-   loop local i (10, 31)
-        local g = string(i)
-        command
-            block zone property dens 1400 young 3.60E+09 poisson 0.32 fric 30 cohesion 2.8E+06 ten 1.68E+06 range group @g
-        endcommand
-    endloop
-end
-[set_properties_mohr_coulomb]
+block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '24'
+block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '25'
+block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range position-z 477.600 527.600
+block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range position-z 387.600 477.600
+block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.70E+06 range position-z 300.600 387.600
+block zone property dens 2600 young 6.20E+09 poisson 0.27  fric 34 cohesion 4.2E+06 ten 2.52E+06 range position-z 290.600 300.600
+block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range position-z 280.600 290.600
+block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range position-z 272.600 280.600
+block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range position-z 267.600 272.600
+block zone property dens 1400 young 3.60E+09 poisson 0.32  fric 30 cohesion 2.8E+06 ten 1.68E+06 range position-z 262.400 267.600
+block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.7E+06 range position-z 212.400 262.400
 
 block contact jmodel assign mohr 
 ;原始
@@ -93,6 +73,6 @@ fish define get_ini_stress
 end
 [get_ini_stress]
 
+model save 'mmm2.2'
 
-
-call '3mmm.txt'
+;call '3mmm.txt'
