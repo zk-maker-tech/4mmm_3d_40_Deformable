@@ -1,0 +1,82 @@
+define read_from_file(name)
+    local f, allData, data, m, i, line, line_sim, line_spl
+
+    ; 打开文件
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    io.out(allData)
+    file.close(f)
+
+    ; 初始化返回数据列表
+    data = list
+    m = list.size(allData)
+
+    ; 调试：输出总行数
+    ;io.out("Total lines in file: " + string(m))
+
+    ; 跳过标题行，从第2行开始
+    loop i (2, m)
+        line = allData(i)
+        line_sim = string.simplify(line)
+        line_spl = string.split(line_sim, ',')
+        
+        ; 调试：输出解析过程
+        ;io.out("Line " + string(i-1) + " raw: " + line)
+        ;io.out("Line " + string(i-1) + " simplified: " + line_sim)
+        ;io.out("Line " + string(i-1) + " split: " + string(line_spl))
+
+        if list.size(line_spl) >= 4 then
+            data('end') = line_spl
+        else
+            io.out("Warning: Skipping invalid line " + string(i-1))
+        endif
+    end_loop
+
+    ;io.out("Parsed data size: " + string(list.size(data)))
+    ;io.out("Parsed data: " + string(data))
+
+    return data
+end
+
+
+define parse_data_to_commands(data,model_type)
+    local i, n, curr, prev, start_z, end_z, cmd, dens, young, poisson
+
+    n = list.size(data)
+    loop i (2, n)
+        curr = data(i)
+        prev = data(i - 1)
+
+        ; 从前一行获取 roof_height 作为起始位置
+        start_z = string(curr(3), 0,'',0,'f')
+        end_z   = string(prev(3), 0,'',0,'f') ; 当前行的 roof_height 即为终止位置
+
+        dens    = curr(7)
+        young   = curr(8)
+        poisson = curr(9)
+
+        cmd = "block zone property dens " + string(dens) + ...
+              " young " + string(young) + ...
+              " poisson " + string(poisson)
+
+        ; 如果指定为 mohr-coulomb，添加相关参数
+        if string.lower(model_type) = "mohr-coulomb"
+            fric     = curr(11)
+            cohesion = curr(10)
+            tens      = curr(12)
+            cmd = cmd + " fric " + string(fric) +  " cohesion " + string(cohesion) + " tens " + string(tens)
+        endif
+
+        ; 添加位置范围
+        cmd = cmd + " range position-z " + string(start_z) + " " + string(end_z)
+        io.out(cmd)
+    end_loop
+end
+
+define test(fileName,model)
+    my_data = read_from_file(fileName)
+    parse_data_to_commands(my_data,model)
+end
+[read_from_file('zone_property.txt')]
+;[test('zone_property.txt','')]
+

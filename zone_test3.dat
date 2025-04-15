@@ -1,0 +1,55 @@
+define parse_data_to_commands(data, model_type)
+    local i, n, curr, prev, start_z, end_z, cmd
+    local dens, young, poisson, fric, cohesion, ten
+
+    n = list.size(data)
+    loop i (2, n)
+        curr = data(i)
+        prev = data(i - 1)
+
+        ; 字符串形式拼接用
+        start_z = string(curr(3), 0, "", 0, "f")
+        end_z   = string(prev(3), 0, "", 0, "f")
+
+        ; 真正命令用
+        local start_z_val = float(curr(3))
+        local end_z_val   = float(prev(3))
+
+        dens    = float(curr(7))
+        young   = float(curr(8))
+        poisson = float(curr(9))
+
+        ; 初始化命令字符串
+        cmd = "block zone property dens " + string(dens) + ...
+              " young " + string(young) + ...
+              " poisson " + string(poisson)
+
+        if string.lower(model_type) = "mohr-coulomb"
+            fric     = curr(11)
+            cohesion = curr(10)
+            ten      = curr(12)
+
+            ; 拼接调试字符串
+            cmd = cmd + " fric " + string(fric) + ...
+                        " cohesion " + string(cohesion) + ...
+                        " ten " + string(ten)
+
+            ; 实际命令块
+            command
+                block zone property dens @dens young @young poisson @poisson fric @fric cohesion @cohesion ten @ten range position-z @start_z_val @end_z_val
+            endcommand
+        else
+            ; 实际命令块
+            command
+                block zone property dens @dens young @young poisson @poisson range position-z @start_z_val @end_z_val
+            endcommand
+        endif
+
+        ; 添加位置范围（调试命令拼接字符串）
+        cmd = cmd + " range position-z " + start_z + " " + end_z
+
+        ; 输出拼接命令供调试查看
+        io.out(cmd)
+    end_loop
+end
+[test('zone_property.txt','mohr-coulomb')]

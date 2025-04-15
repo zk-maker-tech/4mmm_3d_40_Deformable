@@ -1,0 +1,40 @@
+define parse_data_to_commands(data, model_type)
+    local i, n, curr, prev, start_z, end_z, cmd
+    local dens, young, poisson, fric, cohesion, ten
+
+    n = list.size(data)
+    loop i (2, n)
+        curr = data(i)
+        prev = data(i - 1)
+
+        ;start_z = string(prev(3), 0,'',0,'f')
+        start_z = float(curr(3))
+        end_z   = float(prev(3)) ; 
+      
+        dens    = float(curr(7))
+        young   = float(curr(8))
+        poisson = float(curr(9))
+
+        if string.lower(model_type) = "mohr-coulomb"
+            fric     = curr(11)
+            cohesion = curr(10)
+            ten      = curr(12)
+
+            command
+                block zone property dens @dens young @young poisson @poisson ...
+                fric @fric cohesion @cohesion ten @ten range position-z @start_z @end_z
+            endcommand
+        else
+            command
+                block zone property dens @dens young @young poisson @poisson ...
+                range position-z @start_z @end_z
+            endcommand
+        endif
+    end_loop
+end
+define test(fileName,model)
+    my_data = read_from_file(fileName)
+    parse_data_to_commands(my_data,model)
+end
+;[read_from_file('zone.txt')]
+[test('zone_property.txt','mohr-coulomb')]
