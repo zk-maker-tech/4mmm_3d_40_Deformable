@@ -1,0 +1,95 @@
+define read_from_file6(name)
+    local f, allData, header, data_rows,data_line
+    local i, j, row, row_data, ser_val
+    local maps  ; 所有字段名到 map 的映射
+
+    ; ====== 读取文件并处理内容 ======
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    file.close(f)
+
+    header = string.split(string.simplify(allData(1)), ',')  ; 表头（列名） 
+    data_rows = allData(2, list.size(allData))
+    maps = map  ; 用于保存每个字段名对应的 map
+
+    ; 初始化每个字段的空 map
+    loop j(1, list.size(header))
+        if header(j) != ''  ; 跳过空列名，确定每列的名称
+            maps(header(j)) = map
+        endif
+    end_loop
+
+    ; ====== 按行进行读取并填充每个字段对应的 map ======
+    loop i(1, list.size(data_rows))
+        row = string.simplify(data_rows(i)) ;获取每一行的数据
+       
+        row_data = string.split(row, ',')  ;对每一行数据进行分割
+        ser_key = row_data(1)              ;获取第一列的数据 当作key
+
+        ; 将当前行的每列值加入对应 map 中
+        loop j(1, list.size(header))
+            if header(j) != ''
+                maps(header(j))(ser_key) = row_data(j)
+            endif
+        end_loop
+    end_loop
+     loop foreach local map_name map.keys(maps)
+        io.out("======== " + map_name + " ========")
+        local current_map = maps(map_name)
+
+        loop foreach local key map.keys(current_map)
+          io.out(key + " => " + string(current_map(key)))
+        endloop
+      endloop
+    return maps
+end
+
+
+define parse_data(filename,model_type)
+    ; 读取 zone_property2.txt 文件
+    local data = read_from_file6(filename)
+    local roof_map = data("floor")
+
+    local keys = list
+    loop foreach local key map.keys(roof_map)
+
+        keys = list.append(keys, key)
+    endloop
+    local count = list.size(keys)
+
+  local current_roof, rock, dens, young, poisson, fric, cohesion, ten,cmd
+  local prev_roof = null
+    ; 遍历数据
+    loop local i(1,count)
+        local curr_key = keys(i)
+        if curr_key = '' then
+            continue
+        endif
+        rock = keys(i)
+        thick    = float(data('thick')(rock))
+        floor    = float(data('floor')(rock))
+        roof     = float(floor) + float(thick)
+        dens     = float(data('dens')(rock))
+        young    = float(data('young')(rock))
+        poisson  = float(data('poisson')(rock))
+             " poisson " + string(poisson)
+              
+        if string.lower(model_type) = "mohr-coulomb"
+            cohesion = float(data('cohesion')(rock))
+            fric     = float(data('fric')(rock))
+            ten      = float(data('ten')(rock))
+
+            command
+                block zone property dens @dens young @young poisson @poisson ...
+                fric @fric cohesion @cohesion ten @ten range position-z @floor @roof
+            endcommand
+        else
+            command
+                block zone property dens @dens young @young poisson @poisson ...
+                range position-z @floor @roof
+            endcommand
+        endif
+
+    endloop
+end
+[parse_data("zone_property2.txt","m")]
