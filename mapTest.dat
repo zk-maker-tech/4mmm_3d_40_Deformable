@@ -1,0 +1,321 @@
+model new
+fish define test_map
+    
+    local dens = map('ni',2600,'sha',2530)
+    local ni = map('floor_height',527.6,'dens','2600')
+    io.out(ni('floor_height'))
+    io.out(dens('ni'))
+end
+
+define read_from_file(name)
+    local f, allData
+
+    ; 打开文件
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    io.out(allData)
+    file.close(f)
+
+    return allData
+end
+
+define read_from_file2(name)
+    local f, allData, header, column_map, line, line_spl, i, j
+    local ser, col_index, value
+
+    ; ========== 文件读取阶段 ==========
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    file.close(f)
+
+    ; ========== 动态列定位配置 ==========
+    header = string.split(string.simplify(allData(1)), ',')
+    column_map = map
+    loop j (1, list.size(header))
+        column_map(header(j)) = j  ; 建立列名->列号映射
+    end_loop
+
+    ; ========== 显式声明所有参数映射表 ==========
+    dens_map = map
+    young_map = map
+    poisson_map = map
+    cohesion_map = map  ; 第一处cohesion
+    fric_map = map
+    iniszz_map = map
+    roof_height_map = map
+
+    ; ========== 数据行处理（从第3行开始） ==========
+    loop i (3, list.size(allData))
+        line = string.simplify(allData(i))
+        line_spl = string.split(line, ',')
+        
+        ; 数据完整性校验
+        if list.size(line_spl) < list.size(header) then
+            io.out('跳过不完整行：' + string(i))
+            continue
+        endif
+        
+        ; 获取岩层编号（保留原始格式）
+        ser = line_spl(column_map('ser'))
+
+        ; ===== 动态参数赋值（避免硬编码列号） =====
+        ; 密度
+        col_index = column_map('dens')
+        value = float(line_spl(col_index))
+        map.add(dens_map, ser, value)
+
+        ; 杨氏模量
+        col_index = column_map('young')
+        value = float(line_spl(col_index))
+        map.add(young_map, ser, value)
+
+        ; 泊松比
+        col_index = column_map('poisson')
+        value = float(line_spl(col_index))
+        map.add(poisson_map, ser, value)
+      
+    end_loop
+    io.out(dens_map('11'))
+
+    ; ========== 返回所有参数映射表 ==========
+    return dens_map
+end
+;[read_from_file2('zone_property.txt')]
+
+define read_from_file3(name)
+    local f, allData, header, column_map, line, line_spl, i, j,key
+    local ser, col_index, value,line_data,line_map
+
+    ; ========== 文件读取阶段 ==========
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    file.close(f)
+
+    ; ========== 动态列定位配置 ==========
+    header = string.split(string.simplify(allData(1)), ',');获取列名,表头，行向量
+    column_map = map
+    loop j (1, list.size(header))
+        column_map(header(j)) = j  ; 建立列名->列号映射 f辅助取值时候用      header(j) 列明 j对应每行数据的索引  
+        
+;        if j < 3 then
+;            continue
+;        endif
+        ; 为了处理 列数与行数不一致的情况 跳出来
+        if j = list.size(header)
+            return ''
+        endif
+        line = string.simplify(allData(j+2));表头 去掉两行（表头以及800）
+        line_spl = string.split(line, ',') ;行数据
+        ;io.out(line)
+        ;io.out(line_spl)
+        ;io.out('-----------')
+
+        ;io.out(column_map(header(j-2)))
+        ;col_index = column_map(j);
+        ;io.out(col_index)
+        ;io.out(line_spl)
+        ;io.out(header(j))
+        ;io.out(column_map(header(1)))
+        map_name = header(j)+'_map'
+        ;io.out(map_name)
+        map_name = map
+        ;io.out(map_name)
+        loop i(1,list.size(line_spl))
+            line_data = line_spl(1)  ;遍历每行数据，从第3行开始
+            ;io.out(line_spl(i));验证是否从第三行开始获取
+            
+            ;io.out(header(1))
+            key = line_data ;获取所有的 ser序列号
+            ;io.out(key)
+            ;io.out(line_data)
+            value = line_spl(i) ;获取每行数据 对应列的索引
+            ;io.out(header(j)+'_map')
+            io.out(key + '->' + value)
+            ;io.out(value)
+            ;map.add(map_name, string(key), value)
+            ;io.out('--------------')
+        end_loop
+        ;io.out(key + ' ' + value)
+        io.out('====================')
+
+    end_loop
+    
+
+ 
+    
+    return dens_map
+end
+;[read_from_file3('zone_property.txt')]
+
+
+define read_from_file4(name)
+    local f, allData, header, data_rows,data_line
+    local i, j, row, row_data, ser_val
+    local maps  ; 所有字段名到 map 的映射
+
+    ; ====== 读取文件并处理内容 ======
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    file.close(f)
+
+    header = string.split(string.simplify(allData(1)), ',')  ; 表头（列名）
+    data_rows = allData(list.seq(3,4,5,6,7,8,9,10,11, list.size(allData)))     ; 从第3行开始，跳过表头和800那行
+
+    ;io.out(data_rows)
+
+    maps = map  ; 用于保存每个字段名对应的 map
+
+    ; 初始化每个字段的空 map
+    loop j(1, list.size(header))
+        if header(j) != ''  ; 跳过空列名
+            maps(header(j)) = map
+        endif
+    end_loop
+
+    ; ====== 填充每个字段对应的 map ======
+    loop i(1, list.size(data_rows))
+        row = string.simplify(data_rows(i)) ;获取每一行的数据
+       
+        row_data = string.split(row, ',')  ;对每一行数据进行分割
+        ser_key = row_data(1)              ;获取第一列的数据 当作key
+        ;io.out(ser_key)
+
+        ; 将当前行的每列值加入对应 map 中
+        loop j(1, list.size(header))
+            if header(j) != ''
+                ;io.out('----------')
+;                io.out(header(j))
+;                io.out(ser_key)
+;                io.out(row_data(j))
+;                io.out('----------')
+                maps(header(j))(ser_key) = row_data(j)
+            endif
+        end_loop
+    end_loop
+
+    ; 将 ser 自身转为数字索引 map，例如 "01" -> 1
+    ;maps('ser') = map
+;    loop i(1, list.size(data_rows))
+;        row = string.simplify(data_rows(i))
+;        row_data = string.split(row, ',')
+;        maps('ser')(row_data(1)) = i
+;    end_loop
+
+    ; 输出格式化的结果
+;    loop foreach local k map.keys(maps)
+;        
+;        io.out('key: ' + k + ', value: ' + string(maps(k)))
+;    endloop
+    ;loop foreach local m maps
+;        io.out(maps(m))
+;        loop foreach local k map.keys(m)
+;            io.out(k + ' = ' + string(m(k)))
+;        endloop
+;    endloop
+    loop foreach local map_name map.keys(maps)
+        io.out("======== " + map_name + " ========")
+        local current_map = maps(map_name)
+
+        loop foreach local key map.keys(current_map)
+          io.out(key + " => " + string(current_map(key)))
+        endloop
+      endloop
+    return maps
+end
+
+;[read_from_file4('zone_property.txt')]
+
+;按行读取数据并逐列进行分配
+define read_from_file5(name)
+    local f, allData, header, data_rows,data_line
+    local i, j, row, row_data, ser_val
+    local maps  ; 所有字段名到 map 的映射
+
+    ; ====== 读取文件并处理内容 ======
+    f = file.open(name, 'r')
+    allData = file.read(f)
+    file.close(f)
+
+    header = string.split(string.simplify(allData(1)), ',')  ; 表头（列名） 
+    ;data_rows = allData(list.seq(3,4,5,6,7,8,9,10,11, list.size(allData),12,13))     ; 从第3行开始，跳过表头和800那行
+    data_rows = allData(2, list.size(allData))
+    ;io.out(data_rows)
+
+    maps = map  ; 用于保存每个字段名对应的 map
+
+    ; 初始化每个字段的空 map
+    loop j(1, list.size(header))
+        if header(j) != ''  ; 跳过空列名，确定每列的名称
+            maps(header(j)) = map
+        endif
+    end_loop
+
+    ; ====== 按行进行读取并填充每个字段对应的 map ======
+    loop i(1, list.size(data_rows))
+        row = string.simplify(data_rows(i)) ;获取每一行的数据
+       
+        row_data = string.split(row, ',')  ;对每一行数据进行分割
+        ser_key = row_data(1)              ;获取第一列的数据 当作key
+        ;io.out(ser_key)
+
+        ; 将当前行的每列值加入对应 map 中
+        loop j(1, list.size(header))
+            if header(j) != ''
+               ; io.out('----------')
+                ;io.out(header(j) + ' 第->'+ string(j) + '列') ;表头及表头对应的列数
+;                io.out(ser_key)
+;                io.out(row_data(j))
+;                io.out('----------')
+                maps(header(j))(ser_key) = row_data(j)
+            endif
+        end_loop
+        ;io.out('=====================')
+    end_loop
+
+
+    loop foreach local map_name map.keys(maps)
+        ;io.out("======== " + map_name + " ========")
+        local current_map = maps(map_name)
+        ;io.out(current_map)
+
+        loop foreach local key map.keys(current_map)
+          ;io.out(key + " => " + string(current_map(key)))
+        endloop
+      endloop
+    return maps
+end
+
+;[read_from_file5('zone_property2.txt')]
+
+define parse_data
+    local map_data =  read_from_file5('zone_property2.txt')
+    loop foreach local map_name map.keys(map_data)
+        io.out("======== " + map_name + " ========")
+        local current_map = map_data(map_name)
+        ;io.out(current_map)
+
+        loop foreach local key map.keys(current_map)
+          io.out(key + " => " + string(current_map(key)))
+        endloop
+     endloop
+end
+[parse_data]
+
+;二维表格，按行读取
+;ser,岩层,floor_height,厚度,埋深,dens,young,poisson,cohesion,fric,iniszz
+;,,800,,,,,,,,,
+;01,泥岩,527.6,22.4,0,2600,5.00E+09,18.35,5.60E+06,20,0
+;02,细粒砂岩,477.6,50,-22.4,2530,8.64E+09,0.24,5.60E+06,46,-15680
+;03,泥岩,387.6,90,-72.4,2600,5.80E+09,0.31,3.30E+06,35,35000
+
+;按列分配
+;local floor_height = map('01',527.6,'02',477.6,'03',387.6)
+
+;按行读取出来就是
+;01,泥岩,527.6,22.4,0,2600,5.00E+09,18.35,5.60E+06,20,0
+;maps['floor_height']['01'] = 527.6
+;maps['floor_height']['02'] = 477.6
+;maps['floor_height']['03'] = 387.6
+
+
+
