@@ -1,0 +1,91 @@
+fish define first_stress
+    ; ========== 用户可修改参数 ==========
+    local height_ref = 550.0    ; 基准面高程
+    local stress_k1 = 0.5       ; 水平应力系数K1
+    local stress_k2 = 0.5       ; 水平应力系数K2
+    local g = 10.0              ; 重力加速度(m/s²)
+
+    ; ========== 岩层物理参数 ==========
+    array dens(11)
+    dens(1)=2600  
+    dens(2)=2530  
+    dens(3)=2600
+    dens(4)=2580  
+    dens(5)=2600  
+    dens(6)=2600
+    dens(7)=2530  
+    dens(8)=2600  
+    dens(9)=1400
+    dens(10)=1400 
+    dens(11)=2580
+
+    array height_offset(12)
+    height_offset(1)=0.0     
+    height_offset(2)=22.4
+    height_offset(3)=72.4    
+    height_offset(4)=162.4
+    height_offset(5)=249.4   
+    height_offset(6)=259.4
+    height_offset(7)=269.4   
+    height_offset(8)=277.4
+    height_offset(9)=282.4   
+    height_offset(10)=285.0
+    height_offset(11)=287.6  
+    height_offset(12)=337.6
+
+    array height(12)
+    loop local j (1,12)
+        height(j) = height_ref - height_offset(j)
+    endloop
+
+    ; ========== 应力计算 ==========
+    local stress_zz = 0.0
+    io.out('==== 应力计算详细过程 ====')
+    io.out('层号\t顶标高(m)\t底标高(m)\t密度(kg/m³)\t厚度(m)\t应力增量(Pa)\t累计应力(Pa)')
+
+    loop local i (1,11)
+        ; 计算当前层厚度
+        local ztop = height(i)
+        local zbot = height(i+1)
+        local thickness = ztop - zbot  ; 厚度
+
+        ; 当前层密度
+        local rho = dens(i)
+
+        ; 应力增量
+        local delta_stress = rho * g * thickness
+
+        ; 累积垂直应力
+        stress_zz = stress_zz + delta_stress
+
+        ; 水平应力
+        local stress_xx = stress_zz * stress_k1
+        local stress_yy = stress_zz * stress_k2
+
+        ; 应力梯度
+        local grad_xx = rho * g * stress_k1
+        local grad_yy = rho * g * stress_k2
+        local grad_zz = rho * g
+
+        ; ===== 调试输出 =====
+        ;io.out(string(i) + '\t' + string(ztop,0,'',3,'f')  + '\t' + string(zbot, 0,'',3,'f') + '\t' + string(rho, 0,'',1,'f') + '\t' + ...
+              ;string(thickness, 0,'',3,'f') + '\t' + string(delta_stress, 0,'',1,'f') + '\t' + string(stress_zz, 0,'',1,'f'))
+
+        ; ===== 生成可读命令字符串 =====
+        local cmd_str = 'block insitu stress ' + ...
+                       string(stress_xx, 0,'',0,'f') + ' ' + ...
+                       string(stress_yy, 0,'',0,'f') + ' ' + ...
+                       string(stress_zz, 0,'',0,'f') + ' 0,0,0 gradient-z ' + ...
+                       string(grad_xx, 0,'',3,'f') + ' ' + ...
+                       string(grad_yy, 0,'',3,'f') + ' ' + ...
+                       string(grad_zz, 0,'',3,'f') + ' 0,0,0 range position-z ' + ...
+                       string(zbot, 0,'',3,'f') + ' ' + string(ztop, 0,'',3,'f')
+        io.out(cmd_str)
+
+        ; ===== 实际执行命令 =====
+        ;command
+            ;block insitu stress @stress_xx @stress_yy @stress_zz 0 0 0 gradient-z @grad_xx @grad_yy @grad_zz 0 0 0 range position-z @zbot @ztop
+        ;endcommand
+    endloop
+end
+[first_stress]
