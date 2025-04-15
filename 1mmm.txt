@@ -47,43 +47,29 @@ block group '18' range position-x 500124.597 500304.897 position-y 3946523.227 3
 block group '19' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 262.400 265
 block group '20' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 262.400 265
 
-fish define auto_join_blocks_sequence
-    ; 定义包含 36 个组的数组
-    array visible_sequence(36)
-    loop local i (1,36)
-        visible_sequence(i) = i
+
+fish define auto_join_blocks_sequence(group_counts)
+    local visible_sequence = list
+    loop local i (1,group_counts)
+        visible_sequence = list.append(visible_sequence,i)
     endloop
 
     ; 循环执行拼接
-    loop local step (1,36)
-        local visible_layer = visible_sequence(step)
-
-        ; 取消所有隐藏
+    loop local step (1,group_counts)
+        local visible_layer = visible_sequence(step);当前层 
         command
-            block hide off
-        endcommand
-
-        ; 隐藏除当前层以外的 group（1到 36）
-        loop local j (1,36)
-            if j # visible_layer
-                command
-                    block hide range group [string(j)]
-                endcommand
-            endif
-        endloop
-
-        ; 拼接当前可见层
-        command
-            block join on
+            block hide on ; 隐藏所有 block
+            block hide off range group [visible_layer]  ; 只显示当前 group，隐藏其余组
+            block join on ; 执行拼接
         endcommand
     endloop
 
-    ; 全部显示
+    ; 最后显示所有 block
     command
         block hide off
     endcommand
 end
-[auto_join_blocks_sequence]
+[auto_join_blocks_sequence(36)]
 
 fish define init_point
     ;模型边界
