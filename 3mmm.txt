@@ -18,8 +18,8 @@ fish define stress_concentration_factor
 end
 
 ;通用读取文件
-fish define read_from_file(name)
-    local f, data0, data, m, i, line, line_sim, line_spl
+define read_from_file(name)
+    local f, data0, data, m, i, line, line_spl
 
     ; 打开文件
     f = file.open(name, 'r')
@@ -32,17 +32,10 @@ fish define read_from_file(name)
 
     ; 跳过标题行，从第2行开始
     loop i (2, m)
-        line = data0(i)
-        line_sim = string.simplify(line)
-        line_spl = string.split(line_sim, ',')
-
-        if list.size(line_spl) >= 4 then
-            data('end') = line_spl
-        else
-            io.out("Warning: Skipping invalid line " + string(i-1))
-        endif
+        line = string.simplify(data0(i))
+        line_spl = string.split(line, ',')
+        data('end') = line_spl
     end_loop
-
     return data
 end
 
