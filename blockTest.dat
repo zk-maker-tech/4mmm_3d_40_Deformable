@@ -1,0 +1,47 @@
+fish define auto_join_blocks_sequence(group_counts)
+    ; 定义包含 36 个组的数组
+    local visible_sequence = list
+    loop local i (1,group_counts)
+        visible_sequence = list.append(visible_sequence,i)
+    endloop
+    io.out(visible_sequence)
+
+    ; 循环执行拼接
+    loop local step (1,group_counts)
+        local visible_layer = visible_sequence(step);当前层 
+        command
+            block hide on ; 隐藏所有 block
+            block hide off range group [visible_layer]  ; 只显示当前 group，隐藏其余组
+            block join on ; 执行拼接
+        endcommand
+    endloop
+
+    ; 最后显示所有 block
+    command
+        block hide off
+    endcommand
+end
+;[auto_join_blocks_sequence(36)]
+
+fish define auto_join_blocks_by_sequence(seq_array)
+    ; 使用 foreach 循环遍历序列中的每一个 layer name
+    loop foreach local layer_name seq_array
+        command
+            ; 隐藏所有块
+            block hide on
+            
+            ; 显示当前层对应的 group
+            block hide off range group [layer_name]
+
+            ; 执行拼接
+            block join on
+        endcommand
+    endloop
+
+    ; 最后显示所有 block
+    command
+        block hide off
+    endcommand
+end
+
+[auto_join_blocks_by_sequence(list.seq('1','2'))]
