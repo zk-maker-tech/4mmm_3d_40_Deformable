@@ -1,0 +1,39 @@
+fish define sum(m);传统FISH函数（需赋值给函数名返回）
+    a =m * 3 + 5
+    sum = a + 9  ;函数名同时作为返回值变量
+end
+; [sum(22)]
+
+
+fish define res
+    local i = sum(22) ;在另一个函数中调用，并使用其返回值
+    res = i * 2;默认是全局变量
+end
+; [res]
+
+
+
+define add(i,j);简化FISH函数（需用return返回）
+    addRes = i + j
+    return addRes
+end
+[add(4,5)]
+
+define getAddRes
+    local getAddRes = add(2,3)
+    return getAddRes
+end
+[getAddRes]
+
+;fish create avar = 3
+;[avar]
+
+
+fish define test
+    local int_val = 550      ; 整数类型
+    local float_val = 550.0  ; 浮点类型
+    
+    ;io.out('整数字符串: ' + string(int_val, '%0.3f'))     ; 会报错
+    io.out('浮点字符串: ' + string(float_val, '%0.3f'))   ; 正确执行
+end
+[test]
