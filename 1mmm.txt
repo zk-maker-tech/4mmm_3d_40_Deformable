@@ -1,73 +1,70 @@
-; 初始化模型
+;初始化模型
 model new
 model random 10000
 model large-strain off
-block tolerance 1e-4
-; 导入几何
-block import filename 'mmm_GVol_Rigid_Binary80.3dgrid'
+;导入几何
+block import filename '3.3dgrid'
 
-; 设置接触以模拟塌落
-;block contact reset  ; 清除默认接触
-;block tolerance 1e-4  ; 设置容差
-;block contact generate-sub tolerance 1e-4  ; 生成子接触
+;分成11层36组
+block group '24' range group '002' ;a1分层
+block group '25' range group '009' ;a1分层
+block group '26' range position-z 477.600 527.600 ;a2分层
+block group '27' range position-z 432.600 477.600 ;a3分层
+block group '28' range position-z 387.600 432.600 ;a3分层
+block group '29' range position-z 365.850 387.600 ;a4分层
+block group '30' range position-z 344.100 365.850 ;a4分层
+block group '31' range position-z 322.350 344.100 ;a4分层
+block group '32' range position-z 300.600 322.350 ;a4分层
+block group '33' range position-z 290.600 300.600 ;a5分层
+block group '34' range position-z 280.600 290.600 ;a6分层
+block group '35' range position-z 272.600 280.600 ;a7分层
+block group '36' range position-z 267.600 272.600 ;a8分层
+block group '21' range position-z 265 267.600 ;a9分层
+block group '22' range position-z 262.400 265 ;a10分层
+block group '23' range position-z 212.400 262.400 ;a11分层
 
-;分成11组
-block group '1' range position-z 527.600 745.958
-block group '2' range position-z 477.600 527.600
-block group '3' range position-z 387.600 477.600
-block group '4' range position-z 300.600 387.600
-block group '5' range position-z 290.600 300.600
-block group '6' range position-z 280.600 290.600
-block group '7' range position-z 272.600 280.600
-block group '8' range position-z 267.600 272.600
-block group '10' range position-z 265 267.600
-block group '31' range position-z 262.400 265
-block group '9' range position-z 212.400 262.400
-
-block group '11' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 265 267.600
-block group '12' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 265 267.600
-block group '13' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 265 267.600
-block group '14' range position-x 500124.597 500304.897 position-y 3946123.227 3946223.227 position-z 265 267.600
-block group '15' range position-x 500124.597 500304.897 position-y 3946223.227 3946323.227 position-z 265 267.600
-block group '16' range position-x 500124.597 500304.897 position-y 3946323.227 3946423.227 position-z 265 267.600
-block group '17' range position-x 500124.597 500304.897 position-y 3946423.227 3946523.227 position-z 265 267.600
-block group '18' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 265 267.600
-block group '19' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 265 267.600
-block group '20' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 265 267.600
+;煤层一
+block group '1' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 265 267.600
+block group '2' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 265 267.600
+block group '3' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 265 267.600
+block group '4' range position-x 500124.597 500304.897 position-y 3946123.227 3946223.227 position-z 265 267.600
+block group '5' range position-x 500124.597 500304.897 position-y 3946223.227 3946323.227 position-z 265 267.600
+block group '6' range position-x 500124.597 500304.897 position-y 3946323.227 3946423.227 position-z 265 267.600
+block group '7' range position-x 500124.597 500304.897 position-y 3946423.227 3946523.227 position-z 265 267.600
+block group '8' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 265 267.600
+block group '9' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 265 267.600
+block group '10' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 265 267.600
 
 ;煤层二
-block group '21' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 262.400 265
-block group '22' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 262.400 265
-block group '23' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 262.400 265
-block group '24' range position-x 500124.597 500304.897 position-y 3946123.227 3946223.227 position-z 262.400 265
-block group '25' range position-x 500124.597 500304.897 position-y 3946223.227 3946323.227 position-z 262.400 265
-block group '26' range position-x 500124.597 500304.897 position-y 3946323.227 3946423.227 position-z 262.400 265
-block group '27' range position-x 500124.597 500304.897 position-y 3946423.227 3946523.227 position-z 262.400 265
-block group '28' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 262.400 265
-block group '29' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 262.400 265
-block group '30' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 262.400 265
+block group '11' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 262.400 265
+block group '12' range position-x 500124.597 500304.897 position-y 3945923.227 3946023.227 position-z 262.400 265
+block group '13' range position-x 500124.597 500304.897 position-y 3946023.227 3946123.227 position-z 262.400 265
+block group '14' range position-x 500124.597 500304.897 position-y 3946123.227 3946223.227 position-z 262.400 265
+block group '15' range position-x 500124.597 500304.897 position-y 3946223.227 3946323.227 position-z 262.400 265
+block group '16' range position-x 500124.597 500304.897 position-y 3946323.227 3946423.227 position-z 262.400 265
+block group '17' range position-x 500124.597 500304.897 position-y 3946423.227 3946523.227 position-z 262.400 265
+block group '18' range position-x 500124.597 500304.897 position-y 3946523.227 3946623.227 position-z 262.400 265
+block group '19' range position-x 500124.597 500304.897 position-y 3946623.227 3946723.227 position-z 262.400 265
+block group '20' range position-x 500124.597 500304.897 position-y 3946723.227 3946823.227 position-z 262.400 265
 
 fish define auto_join_blocks_sequence
-    ; 定义包含 31 个组的数组
-    array visible_sequence(31)
-    i = 1
-    loop i (1,31)
+    ; 定义包含 36 个组的数组
+    array visible_sequence(36)
+    loop local i (1,36)
         visible_sequence(i) = i
     endloop
 
     ; 循环执行拼接
-    step = 1
-    loop step (1,31)
-        visible_layer = visible_sequence(step)
+    loop local step (1,36)
+        local visible_layer = visible_sequence(step)
 
         ; 取消所有隐藏
         command
             block hide off
         endcommand
 
-        ; 隐藏除当前层以外的 group（1 到 31）
-        j = 1
-        loop j (1,31)
+        ; 隐藏除当前层以外的 group（1到 36）
+        loop local j (1,36)
             if j # visible_layer
                 command
                     block hide range group [string(j)]
@@ -88,103 +85,150 @@ fish define auto_join_blocks_sequence
 end
 [auto_join_blocks_sequence]
 
-fish define do_layer_cut
-  ; ===== 基本参数定义 =====
-  local x_min = 500084.597
-  local x_max = 500344.897
-  local y_min = 3945783.227
-  local y_max = 3946863.227
+fish define init_point
+    ;模型边界
+    x_min_model = 499689.608
+    x_max_model = 500634.052
+    y_min_model = 3945646.627
+    y_max_model = 3947079.882    
+    z_min_model = 212.4
+    z_max_model = 747
+   
+    ;煤层边界
+    x_min_coal = 500124.597
+    x_max_coal = 500304.897
+    y_min_coal = 3945823.227
+    y_max_coal = 3946823.227    
+    z_min_coal = 262.4
+    z_max_coal = 267.6
+    z_center_coal = 265
+    
+   
+    ;切割块体边界
+    x_min_cut = x_min_coal - 40
+    x_max_cut = x_max_coal + 40
+    y_min_cut = y_min_coal - 40
+    y_max_cut = y_max_coal + 40
 
-  local x_center = (x_min + x_max) / 2
-  local y_center = (y_min + y_max) / 2
+    x_center_coal = (x_min_coal + x_max_coal) / 2
+    y_center_coal = (y_min_coal + y_max_coal) / 2
 
-  local x_shift = x_center - 10
-  local y_shift = y_center - 10
-
-  ; ===== 第一步：隐藏边界区域、底部所有组，并进行边界切割 =====
-  command
-    ; 隐藏第9~31组
-    block hide off
-  endcommand
-
-  local i = 9
-  loop i (9, 31)
-    command
-      block hide range group [string(i)]
-    endcommand
-  endloop
-
-  command
-    ; 边界切割
-    block cut joint-set dip 90 dip-direction 90 origin 500074.597 0 0
-    block cut joint-set dip 90 dip-direction 90 origin 500344.897 0 0
-    block hide range position-x 400084.597 500074.597
-    block hide range position-x 500344.897 600344.897
-
-    block cut joint-set dip 90 dip-direction 0 origin 0 3945783.227 0
-    block cut joint-set dip 90 dip-direction 0 origin 0 3946863.227 0
-    block hide range position-y 2945783.227 3945783.227
-    block hide range position-y 3946863.227 4946863.227
-  endcommand
-
-  ; ===== 第二步：切割偶数组（2,4,6,8） =====
-  command
-    block hide range group '1'
-    block hide range group '3'
-    block hide range group '5'
-    block hide range group '7'
-
-    block cut joint-set dip 90 dip-direction 90 origin @x_center 0 0 number 11 spacing 20
-    block cut joint-set dip 90 dip-direction 0 origin 0 @y_center 0 number 53 spacing 20
-  endcommand
-
-  ; ===== 第三步：切割奇数组（1,3,5,7） =====
-  command
-    block hide off
-  endcommand
-
-  i = 9
-  loop i (9, 31)
-    command
-      block hide range group [string(i)]
-    endcommand
-  endloop
-
-  command
-    block hide range position-x 400084.597 500074.597
-    block hide range position-x 500344.897 600344.897
-    block hide range position-y 2945783.227 3945783.227
-    block hide range position-y 3946863.227 4946863.227
-
-    block hide range group '2'
-    block hide range group '4'
-    block hide range group '6'
-    block hide range group '8'
-
-    block cut joint-set dip 90 dip-direction 90 origin @x_shift 0 0 number 11 spacing 20
-    block cut joint-set dip 90 dip-direction 0 origin 0 @y_shift 0 number 53 spacing 20
-  endcommand
-
-  ; ===== 最后一步：全部显示 =====
-  command
-    block hide off
-  endcommand
+    x_shift = x_center_coal - 10
+    y_shift = y_center_coal - 10
+    x_shift2 = x_center_coal - 20
+    y_shift2 = y_center_coal - 20
+    x_shift3 = x_center_coal - 40
+    y_shift3 = y_center_coal - 40
 end
+[init_point]
+;隐藏底部组
+block hide range position-z @z_min_model @z_max_coal
+;x边界切割
+block cut joint-set dip 90 dip-direction 90 origin @x_min_cut 0 0
+block cut joint-set dip 90 dip-direction 90 origin @x_max_cut 0 0
+;隐藏x两边
+block hide range position-x @x_min_model @x_min_cut
+block hide range position-x @x_max_cut @x_max_model
+;y边界切割
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_min_cut 0
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_max_cut 0
+;隐藏y两边
+block hide range position-y @y_min_model @y_min_cut
+block hide range position-y @y_max_cut @y_max_model
 
-[do_layer_cut]
+;对31，32，33，34，35，36---20
+;隐藏除31,33,35中间部分的块
+block hide range position-z 344.100 @z_max_model
+block hide range group '32'
+block hide range group '34'
+block hide range group '36'
+;切割31,33,35中间部分的块
+block cut joint-set dip 90 dip-direction 90 origin @x_center_coal 0 0 number 13 spacing 20
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_center_coal 0 number 53 spacing 20
+block hide off
+model save 'mmm1.2'
+;隐藏除32,34,36中间部分的块
+block hide range position-x @x_min_model @x_min_cut
+block hide range position-x @x_max_cut @x_max_model
+block hide range position-y @y_min_model @y_min_cut
+block hide range position-y @y_max_cut @y_max_model
+block hide range position-z @z_min_model 267.600
+block hide range position-z 344.100 @z_max_model
+block hide range group '31'
+block hide range group '33'
+block hide range group '35'
+;切割32,34,36中间部分的块
+block cut joint-set dip 90 dip-direction 90 origin @x_shift 0 0 number 12 spacing 20
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_shift 0 number 52 spacing 20
+block hide off
 
-model save 'mmm0'
-;block contact reset
-;block contact generate-sub
-block zone generate edgelength 5 range id-list 38906  30341 26510
+;对27，28，29，30---40
+;隐藏除28，30中间部分的块
+block hide range position-x @x_min_model @x_min_cut
+block hide range position-x @x_max_cut @x_max_model
+block hide range position-y @y_min_model @y_min_cut
+block hide range position-y @y_max_cut @y_max_model
+block hide range position-z @z_min_model 344.100
+block hide range position-z 477.600 @z_max_model
+block hide range group '27'
+block hide range group '29'
+;切割28，30中间部分的块
+block cut joint-set dip 90 dip-direction 90 origin @x_center_coal 0 0 number 5 spacing 40 ;切割块数6或5
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_center_coal 0 number 25 spacing 40
+block hide off
 
-block zone generate edgelength 40 
+;隐藏除27，29中间部分的块
+block hide range position-x @x_min_model @x_min_cut
+block hide range position-x @x_max_cut @x_max_model
+block hide range position-y @y_min_model @y_min_cut
+block hide range position-y @y_max_cut @y_max_model
+block hide range position-z @z_min_model 344.100
+block hide range position-z 477.600 @z_max_model
+block hide range group '28'
+block hide range group '30'
+;切割27，29中间部分的块
+block cut joint-set dip 90 dip-direction 90 origin @x_shift2 0 0 number 6 spacing 40
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_shift2 0 number 26 spacing 40
+block hide off
 
+;对24，25，26---80
+;隐藏除25中间部分的块
+block hide range position-x @x_min_model @x_min_cut
+block hide range position-x @x_max_cut @x_max_model
+block hide range position-y @y_min_model @y_min_cut
+block hide range position-y @y_max_cut @y_max_model
+block hide range position-z @z_min_model 477.600
+block hide range group '24'
+block hide range group '26'
+;切割25中间部分的块
+block cut joint-set dip 90 dip-direction 90 origin @x_center_coal 0 0 number 11 spacing 80
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_center_coal 0 number 53 spacing 80
+block hide off
 
+;隐藏除24，26中间部分的块
+block hide range position-x @x_min_model @x_min_cut
+block hide range position-x @x_max_cut @x_max_model
+block hide range position-y @y_min_model @y_min_cut
+block hide range position-y @y_max_cut @y_max_model
+block hide range position-z @z_min_model 477.600
+block hide range group '25'
+;切割24，26中间部分的块
+block cut joint-set dip 90 dip-direction 90 origin @x_shift3 0 0 number 2 spacing 80
+block cut joint-set dip 90 dip-direction 0 origin 0 @y_shift3 0 number 12 spacing 80
+block hide off
 
-;block join on
+model save 'mmm1.3'
+
+;划分zone
+block zone generate edgelength 80   
+block zone generate edgelength 40 range id-list 62850 62849 62704 62269 58062 58060 50794 46002 40972 39488 39475 31505 31404 29909 28331 27053 26751 26718 26632 26046 25496 23536 21532 8485 8305 2481
+block zone generate edgelength 20 range id-list 62850 62849 62269 58062 58060 50794 46002 40972 39488 39475 29909 27053 8485 8305
+block zone generate edgelength 10 range id-list 58062 50794 46002 40972 39488 39475 29909 8305
+block zone generate edgelength 5 range id-list 50794 46002 40972 
+
 ;model list ;显示模型信息
-model save 'mmm1'
+model save 'mmm1.4'
+
 call '2mmm.txt'
 
 

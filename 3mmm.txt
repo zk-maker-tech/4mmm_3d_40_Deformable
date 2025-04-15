@@ -17,26 +17,8 @@ fish define stress_concentration_factor
       end_loop 
 end
 
-fish define get_disp
-    starty=3945646.627
-    endy=3947079.882
-    stenx=500214.747
-    stenz1=268   ;lmmediate roof
-    stenz2=264.5    ;floor
-    
-    loop while starty<=endy
-             p1=block.gp.near(stenx,starty,stenz1)
-             p2=block.gp.near(stenx,starty,stenz2)
-             table('coalTopDisp',starty)=block.gp.disp.z(p1)
-             table('coalButtomDisp',starty)=block.gp.disp.z(p2)
-
-             starty=starty+15
-    end_loop 
-end
-
-
-
-define read_from_file(name)
+;通用读取文件
+fish define read_from_file(name)
     local f, data0, data, m, i, line, line_sim, line_spl
 
     ; 打开文件
@@ -48,19 +30,11 @@ define read_from_file(name)
     data = list
     m = list.size(data0)
 
-    ; 调试：输出总行数
-    ;io.out("Total lines in file: " + string(m))
-
     ; 跳过标题行，从第2行开始
     loop i (2, m)
         line = data0(i)
         line_sim = string.simplify(line)
         line_spl = string.split(line_sim, ',')
-        
-        ; 调试：输出解析过程
-        ;io.out("Line " + string(i-1) + " raw: " + line)
-        ;io.out("Line " + string(i-1) + " simplified: " + line_sim)
-        ;io.out("Line " + string(i-1) + " split: " + string(line_spl))
 
         if list.size(line_spl) >= 4 then
             data('end') = line_spl
@@ -69,63 +43,60 @@ define read_from_file(name)
         endif
     end_loop
 
-    ;io.out("Parsed data size: " + string(list.size(data)))
-    ;io.out("Parsed data: " + string(data))
-
     return data
 end
 
+fish define coal_disp
+       
+    loop while y_min_model<=y_max_model
+             p1=block.gp.near(x_center_coal,y_min_model,z_max_coal+0.4)
+             p2=block.gp.near(x_center_coal,y_min_model,z_center_coal-0.4)
+             table('coalTopDisp',y_min_model)=block.gp.disp.z(p1)
+             table('coalButtomDisp',y_min_model)=block.gp.disp.z(p2)
+             y_min_model=y_min_model+15
+    end_loop 
+end
 
-[read_from_file("points.txt")]
-
-
-define filter_z_data(input_data)
-    local filtered, i, row, name
+;显示地面监测点
+define filter_data(input_data,zorq)
+    local data, i, row, name
     
     ; 初始化返回数据列表
-    filtered = list
+    data = list
     
     ; 获取输入数据大小
     local size = list.size(input_data)
     
     ; 遍历每一行数据
     loop i (1, size)
-        row = input_data(i)
+        row = input_data(i);获取传过来每一行的数据
         ; 获取第一列（名称列）
-        name = row(1)
+        name = string.upper(row(1))
+        zorq = string.upper(zorq);走向与倾向区分值
         
         ; 检查名称中是否包含"Z"
-        if string.find(name, "Z") > 0 then
-            filtered('end') = row
-            ; 将row的元素拼接为字符串
-            local row_str = row(1) + "," + row(2) + "," + row(3) + "," + row(4)
-            ;io.out("Found Z data: " + row_str)
+        if string.find(name, zorq) > 0 then
+            data('end') = row
         endif
     end_loop
     
-    ;io.out("Total Z data found: " + string(list.size(filtered)))
-    return filtered
+    return data
 end
 
-; 修改后的 get_disp2 函数
-fish define get_disp3(data_file)
-    ; 创建30x3的数组用于存储监测点坐标
-    monitor_points = array(30, 3)  ; 30个点，每个点有3个坐标值 (X, Y, Z)
-    
+;布设地面检测点
+fish define model_top_disp(data_file,zorq)
+   
      ; 从文件中读取数据
     local data = read_from_file(data_file)
-    local points_data = filter_z_data(data)
+    local points_data = filter_data(data,zorq);过滤走向与倾向值
    
-    local num_points = list.size(points_data)
+    local num_points = list.size(points_data);获取走向或倾向点的数量
     
-    ; 检查是否正好有30个点
-    if num_points != 30 then
-        io.out("Error: Expected 30 points, but found " + string(num_points) + " points in file")
-        exit
-    endif
+     ; 创建num_points x3的数组用于存储监测点坐标
+    monitor_points = array(num_points, 3)  ; num_points个点，每个点有3个坐标值 (X, Y, Z)
     
     ; 填充 monitor_points 数组
-    loop local i (1, 30)
+    loop local i (1, num_points)
         local row = points_data(i)  ; 获取第i行数据
         ; row(2), row(3), row(4) 分别是 X, Y, Z 坐标，转换为浮点数
         monitor_points(i, 1) = float(row(2))  ; X 坐标
@@ -133,8 +104,8 @@ fish define get_disp3(data_file)
         monitor_points(i, 3) = float(row(4))  ; Z 坐标
     end_loop
     
-    ; 遍历所有监测点（保持原有逻辑）
-    loop local j (1, 30)
+    ; 遍历所有监测点
+    loop local j (1, num_points)
         local x = monitor_points(j, 2)
         local y = monitor_points(j, 1)
         local z = monitor_points(j, 3)
@@ -143,171 +114,20 @@ fish define get_disp3(data_file)
         local p = block.gp.near(x, y, z)
         
         if p == null then
-            ;io.out("Warning: 无法找到坐标 (" + string(x) + ", " + string(y) + ", " + string(z) + ") 的网格点")
-            table('top', y) = 0
+            table('top'+zorq, y) = 0
         else
-            table('top', y) = block.gp.disp.z(p)
+            table('top'+zorq, y) = block.gp.disp.z(p)
         endif
     end_loop
 end
 
-
-fish define get_disp2
-  
-    monitor_points = array(30,3)  ; 30个点，每个点有3个坐标值 (y, x, z)
-    
-    ; 定义点坐标
-    monitor_points(1,1) = 3945452.171  ; X 坐标
-    monitor_points(1,2) = 500201.236   ; Y 坐标
-    monitor_points(1,3) = 693.573      ; Z 坐标
-
-    monitor_points(2,1) = 3945475.377
-    monitor_points(2,2) = 500211.165
-    monitor_points(2,3) = 697.395
-
-    monitor_points(3,1) = 3945497.520
-    monitor_points(3,2) = 500209.644
-    monitor_points(3,3) = 701.603
-
-    monitor_points(4,1) = 3945522.183
-    monitor_points(4,2) = 500212.726
-    monitor_points(4,3) = 714.319
-
-    monitor_points(5,1) = 3945556.526
-    monitor_points(5,2) = 500212.340
-    monitor_points(5,3) = 729.248
-
-    monitor_points(6,1) = 3945568.152
-    monitor_points(6,2) = 500202.126
-    monitor_points(6,3) = 732.146
-
-    monitor_points(7,1) = 3945596.318
-    monitor_points(7,2) = 500211.013
-    monitor_points(7,3) = 738.233
-
-    monitor_points(8,1) = 3945624.684
-    monitor_points(8,2) = 500210.090
-    monitor_points(8,3) = 739.199
-
-    monitor_points(9,1) = 3945649.890
-    monitor_points(9,2) = 500209.414
-    monitor_points(9,3) = 727.379
-
-    monitor_points(10,1) = 3945673.770
-    monitor_points(10,2) = 500213.138
-    monitor_points(10,3) = 721.446
-
-    monitor_points(11,1) = 3945703.723
-    monitor_points(11,2) = 500210.657
-    monitor_points(11,3) = 718.789
-
-    monitor_points(12,1) = 3945711.562
-    monitor_points(12,2) = 500204.890
-    monitor_points(12,3) = 715.543
-
-    monitor_points(13,1) = 3945746.548
-    monitor_points(13,2) = 500210.100
-    monitor_points(13,3) = 712.070
-
-    monitor_points(14,1) = 3945773.855
-    monitor_points(14,2) = 500205.438
-    monitor_points(14,3) = 707.982
-
-    monitor_points(15,1) = 3945800.935
-    monitor_points(15,2) = 500204.293
-    monitor_points(15,3) = 704.924
-
-    monitor_points(16,1) = 3945824.410
-    monitor_points(16,2) = 500199.895
-    monitor_points(16,3) = 703.227
-
-    monitor_points(17,1) = 3945857.515
-    monitor_points(17,2) = 500210.787
-    monitor_points(17,3) = 701.971
-
-    monitor_points(18,1) = 3945871.449
-    monitor_points(18,2) = 500208.217
-    monitor_points(18,3) = 695.532
-
-    monitor_points(19,1) = 3945897.478
-    monitor_points(19,2) = 500212.420
-    monitor_points(19,3) = 688.432
-
-    monitor_points(20,1) = 3945921.502
-    monitor_points(20,2) = 500213.217
-    monitor_points(20,3) = 683.267
-
-    monitor_points(21,1) = 3945938.271
-    monitor_points(21,2) = 500210.704
-    monitor_points(21,3) = 677.233
-
-    monitor_points(22,1) = 3945969.663
-    monitor_points(22,2) = 500210.295
-    monitor_points(22,3) = 667.516
-
-    monitor_points(23,1) = 3945992.224
-    monitor_points(23,2) = 500209.220
-    monitor_points(23,3) = 662.333
-
-    monitor_points(24,1) = 3946128.488
-    monitor_points(24,2) = 500208.977
-    monitor_points(24,3) = 615.389
-
-    monitor_points(25,1) = 3946147.764
-    monitor_points(25,2) = 500214.876
-    monitor_points(25,3) = 614.338
-
-    monitor_points(26,1) = 3946175.380
-    monitor_points(26,2) = 500208.190
-    monitor_points(26,3) = 600.011
-
-    monitor_points(27,1) = 3946195.427
-    monitor_points(27,2) = 500210.226
-    monitor_points(27,3) = 583.159
-
-    monitor_points(28,1) = 3946223.434
-    monitor_points(28,2) = 500210.780
-    monitor_points(28,3) = 583.211
-
-    monitor_points(29,1) = 3946248.631
-    monitor_points(29,2) = 500208.708
-    monitor_points(29,3) = 580.133
-
-    monitor_points(30,1) = 3946272.655
-    monitor_points(30,2) = 500206.615
-    monitor_points(30,3) = 583.893
-
-  ; 遍历所有监测点
-    loop local i (1,30)
-        local y = monitor_points(i,1)
-        local x = monitor_points(i,2)
-        local z = monitor_points(i,3)
-        
-        ; 找到最近的网格点
-        local p = block.gp.near(x, y, z)
-        
-        if p == null
-            io.out("Warning: 无法找到坐标 (" + string(x) + ", " + string(y) + ", " + string(z) + ") 的网格点")
-            table('top', y) = 0
-        else
-            table('top',y)=block.gp.disp.z(p)
-        end_if
-           
-      
-    end_loop
-end
-
 fish define get_stress
-    starty=3945646.627
-    endy=3947079.882
-    stenx=500214.747
 
-    stenz5=268   ;in coal seam
-    
-    loop while starty<=endy
-             p5=block.zone.near(stenx,starty,stenz5)
-             table('coalTopStress',starty)=-1.*block.zone.stress.zz(p5)
-             starty=starty+15
+       
+    loop while y_min_model<=y_max_model
+             p5=block.zone.near(x_center_coal,y_min_model,z_max_coal+0.4)
+             table('coalTopStress',y_min_model)=-1.*block.zone.stress.zz(p5)
+             y_min_model=y_min_model+15
     end_loop 
 end
 
@@ -333,14 +153,12 @@ define read_and_create_monitor_histories(filename)
         local y = monitor_points(j, 2)
         local z = monitor_points(j, 3)
         local name = point_names(j)
-        io.out("Point " + name + ": x=" + string(x) + ", y=" + string(y,0,'',3,'f') + ", z=" + string(z))
         ; 检查最近的网格点是否存在
         local gp = block.gp.near(x, y, z)
         if gp = 0 then
             io.out("Skipping " + name + " at (" + string(x) + ", " + string(y,0,'',3,'f') + ", " + string(z) + ") - No gridpoint found")
             continue  ; 跳过此点，继续下一个
         endif
-        io.out("Creating history for " + name + " at " + string(x) + "," + string(y,0,'',3,'f') + "," + string(z))
         command 
             block history name @name  displacement-z position @x @y @z
         endcommand
@@ -355,45 +173,23 @@ end
 [read_and_create_monitor_histories("points.txt")]
 
 
-fish define mining1
+fish define mining_layer_one
   loop n (1,10)
-    x1=n+10
-    x2=n*100
-    ss='2mining_'+string(x2)+'m'
+    step_sav='10000mining_'+string(n*100)+'m'
     command 
-        block delete range group @x1
-        model step 50
-        ;model solve ratio 1e-4
+        block delete range group @n
+        model step 20000
         [stress_concentration_factor]
-        [get_disp3("points.txt")]
-        [get_disp]
+        [model_top_disp("points.txt","z")]
+        [model_top_disp("points.txt","q")]
+        [coal_disp]
         [get_stress]
-        model save @ss
+        model save @step_sav
     endcommand
   endloop
 end
-[mining1]
-model step 50
-;model solve ratio 1e-4
+[mining_layer_one]
+model step 20000
 model save 'mmm3'
-
-;fish define mining2
-;  loop n (11,20)
-;    x1=n+10
-;    x2=n*100
-;    ss='1mining_'+string(x2)+'m'
-;    command 
-;        block delete range group @x1
-;        model step 2000
-;        [stress_concentration_factor]
-;        [get_disp2]
-;        [get_disp]
-;        [get_stress]
-;        model save @ss
-;    endcommand
-;  endloop
-;end
-;[mining2]
-;model step 2000
 
 ;model save 'mmm4'

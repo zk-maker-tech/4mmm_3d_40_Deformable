@@ -1,37 +1,108 @@
 model new
-model restore 'mmm1'
+model restore 'mmm1.4'
+
+
+define read_from_file_txt(name)
+    local f, allData, header, data_rows,data_line
+    local i, j, row, row_data, ser_val,column_num,row_num
+    local maps  ; 所有字段名到 map 的映射
+
+    ; ====== 读取文件并处理内容 ======
+    f = file.open(name, 'r') ;f代表文件
+    allData = file.read(f) ;所有的数据
+    file.close(f) ;
+
+    header = string.split(string.simplify(allData(1)), ',')  ; 表头（列名） 
+    data_rows = allData(2, list.size(allData));所有有效的数据，比如去除列名;所以参数2可以提出来作为方法参数startLine
+    maps = map  ; 用于保存每个字段名对应的 map
+    
+    column_num = list.size(header);列数
+
+    ; 初始化每个字段的空 map
+    loop j(1, column_num) ;j代表的是列名索引值
+        if header(j) != ''  ; 跳过空列名，确定每列的名称
+            maps(header(j)) = map ;针对每一列定义一个map
+        endif
+    end_loop
+
+    ; ====== 按行进行读取并填充每个字段对应的 map ======
+    row_num = list.size(data_rows);行数
+    loop i(1, row_num)
+        row = string.simplify(data_rows(i)) ;获取每一行的数据,去除一些空格
+       
+        row_data = string.split(row, ',')  ;对每一行数据进行分割.可以理解数为组
+        ser_key = row_data(1)              ;获取第一列的数据 当作key
+
+        ; 将当前行的每列值加入对应 map 中
+        loop j(1, column_num)
+            if header(j) != ''
+                maps(header(j))(ser_key) = row_data(j);核心 二维键值对
+            endif
+        end_loop
+    end_loop
+    
+    return maps
+end
+
+define parse_data(filename,model_type)
+    ; 读取 zone_property2.txt 文件
+    local data = read_from_file_txt(filename);data返回的是二维键值对
+    local group_map = data("group") ;取出一列的值，随便那一列其实都可以，因为key都是一样的
+
+    local keys = list
+    loop foreach local key map.keys(group_map)
+
+        keys = list.append(keys, key);二维索引中的x值
+    endloop
+    local count = list.size(keys);所有key的数量
+
+  local current_roof, rock, dens, young, poisson, fric, cohesion, ten
+    ; 遍历数据
+    loop local i(1,count)
+        local curr_key = keys(i) ;去除当前的key值 实际上就是x值 即本例中的group
+        
+        ;接下来 根据二位索引获取值  (列行) 来进行定位一个数
+        thick    = float(data('thick')(curr_key))
+        floor    = float(data('floor')(curr_key))
+        roof     = float(floor) + float(thick)
+        dens     = float(data('dens')(curr_key))
+        young    = float(data('young')(curr_key))
+        poisson  = float(data('poisson')(curr_key))
+        ;以下参数为mohr-coulomb使用
+        cohesion = float(data('cohesion')(curr_key))
+        fric     = float(data('fric')(curr_key))
+        ten      = float(data('ten')(curr_key))
+              
+        if string.lower(model_type) = "mohr-coulomb"
+           
+            command
+                block zone property dens @dens young @young poisson @poisson ...
+                fric @fric cohesion @cohesion ten @ten range position-z @floor @roof
+            endcommand
+        else
+            command
+                block zone property dens @dens young @young poisson @poisson ...
+                range position-z @floor @roof
+            endcommand
+        endif
+
+    endloop
+end
+
+
 
 block zone cmodel assign elastic
-;原始
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '24'
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range group '25'
-block zone property dens 2530 young 8.64E+09 poisson 0.24 range position-z 477.600 527.600
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range position-z 387.600 477.600
-block zone property dens 2580 young 6.70E+09 poisson 0.26 range position-z 300.600 387.600
-block zone property dens 2600 young 6.20E+09 poisson 0.27 range position-z 290.600 300.600
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range position-z 280.600 290.600
-block zone property dens 2530 young 8.64E+09 poisson 0.24 range position-z 272.600 280.600
-block zone property dens 2600 young 5.80E+09 poisson 0.31 range position-z 267.600 272.600
-block zone property dens 1400 young 3.60E+09 poisson 0.32 range position-z 262.400 267.600
-block zone property dens 2580 young 6.70E+09 poisson 0.26 range position-z 212.400 262.400
 
-block contact jmodel assign mohr  ; 使用 Mohr 模型
+
+[parse_data("zone_property2.txt","elastic")]
+
+
+block contact jmodel assign mohr 
 block contact property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
 block contact material-table default property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 2e7 friction 30 tension 1e7
-
+model save 'mmm2.0'
 model grav 0 0 -10
 block insitu topo ratio-x 0.5 ratio-y 0.5
-;block insitu stress 0 0 0 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '1'
-;block insitu stress -152850.6 -76425.3 -152850.6 0,0,0 gradient-z 12650  12650  25300  0,0,0 range group '2'
-;block insitu stress 17500 17500 35000 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '3'
-;block insitu stress -18335.8 -18335.8 -36671.6 0,0,0 gradient-z 12900  12900  25800  0,0,0 range group '4'
-;block insitu stress 26200 26200 52400 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '5'
-;block insitu stress 26200 26200 52400 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '6'
-;block insitu stress -136675.3 -136675.3 -273350.6 0,0,0 gradient-z 12650  12650  25300  0,0,0 range group '7'
-;block insitu stress 29000 29000 58000 0,0,0 gradient-z 13000  13000  26000  0,0,0 range group '8'
-;block insitu stress -2841148 -2841148 -5682296 0,0,0 gradient-z 7000  7000  14000  0,0,0 range group '9'
-;block insitu stress -2841148 -2841148 -5682296 0,0,0 gradient-z 7000  7000  14000  0,0,0 range group '10'
-;block insitu stress 11844.2 11844.2 23688.4 0,0,0 gradient-z 12900  12900  25800  0,0,0 range group '11'
 
 ; 边界条件和重力
 block gridpoint apply velocity-x 0 range position-x  500633,500635
@@ -41,29 +112,19 @@ block gridpoint apply velocity-y 0 range position-y  3945646,3945647
 block gridpoint apply velocity-z 0 range position-z  212,213
 
 model solve ratio 1e-4
-model save 'mmm2.1'
+;model save 'mmm2.1'
+
 block zone cmodel assign mohr-coulomb
-;原始
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '24'
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range group '25'
-block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range position-z 477.600 527.600
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range position-z 387.600 477.600
-block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.70E+06 range position-z 300.600 387.600
-block zone property dens 2600 young 6.20E+09 poisson 0.27  fric 34 cohesion 4.2E+06 ten 2.52E+06 range position-z 290.600 300.600
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range position-z 280.600 290.600
-block zone property dens 2530 young 8.64E+09 poisson 0.24  fric 46 cohesion 5.6E+06 ten 3.36E+06 range position-z 272.600 280.600
-block zone property dens 2600 young 5.80E+09 poisson 0.31  fric 35 cohesion 3.3E+06 ten 1.98E+06 range position-z 267.600 272.600
-block zone property dens 1400 young 3.60E+09 poisson 0.32  fric 30 cohesion 2.8E+06 ten 1.68E+06 range position-z 262.400 267.600
-block zone property dens 2580 young 6.70E+09 poisson 0.26  fric 35 cohesion 4.5E+06 ten 2.7E+06 range position-z 212.400 262.400
+
+
+[parse_data("zone_property2.txt","mohr-coulomb")]
 
 block contact jmodel assign mohr 
-;原始
+
 block contact property stiffness-normal 1e11 stiffness-shear 1e11 cohesion 1e6 friction 30 tension 1e5  ; 统一接触属性
 block contact property stiffness-normal 1e9 stiffness-shear 1e9 cohesion 1e3 friction 0 tension 1e2 range position-x 500073 500249 position-y 3945828 3946865 position-z 267.6 300.6
 block contact property stiffness-normal 1e10 stiffness-shear 1e10 cohesion 1e4 friction 10 tension 1e3 range position-z 300.6 746
 block contact material-table default property stiffness-normal 1e9 stiffness-shear 1e9 cohesion 0 friction 0 tension 0
-
-;model solve ratio 1e-4;mohr_coulomb模型平衡一次
 
 fish define get_ini_stress
       loop foreach local zp block.zone.list
