@@ -1,0 +1,70 @@
+
+define test
+   ; 模拟一行数据
+    local header = list.seq('编号', '岩性', '厚度', '密度')
+    local row_data = list.seq('01', '泥岩', 22.4, 2600)
+
+    ; 初始化容器
+    local maps = map()
+    local ser_key = row_data(1)  ; '01'
+
+    ; 遍历列
+    loop local j (2, list.size(header))
+      ; 如果还没有这个字段的map，先初始化
+      if map.has(maps, header(j))==false then
+        maps(header(j)) = map()
+      endif
+      ; 把当前值存入对应字段的map中
+      maps(header(j))(ser_key) = row_data(j)
+      ;io.out(maps('密度')('01'))
+    endloop
+    io.out(maps('密度')('01'))
+    io.out(maps("岩性")("01"))
+    io.out(maps("厚度")("01"))
+
+end
+
+define test2
+    ; 定义表头
+    local header = list.seq('编号', '岩性', '厚度', '密度')
+
+    ; 定义多行数据（模拟几条地层记录）
+    local data_rows = list.sequence(list.seq('01', '泥岩',22.4, 2600),list.seq('02', '砂岩',50.0, 2530),list.seq('03', '粉砂岩',90.0, 2600),list.seq('04', '煤', 2.6,  1400))
+
+    ; 初始化maps容器（字段名 -> (编号 -> 值)）
+    local maps = map()
+
+    ; 遍历每一行数据
+    loop local i (1, list.size(data_rows))
+        local row_data = data_rows(i)
+        local ser_key = row_data(1)  ; 编号
+
+        ; 遍历字段（从第2列开始）
+        loop local j (2, list.size(header))
+            local field = header(j)
+
+            ; 如果还没有这个字段的子map，先初始化
+            if map.has(maps, field)==false then
+                maps(field) = map()
+            endif
+
+            ; 设置值
+            maps(field)(ser_key) = row_data(j)
+        endloop
+    endloop
+
+    ; 打印 maps 内容
+    io.out("===== 输出 maps 内容 =====")
+    loop local m (2, list.size(header))
+        field = header(m)
+        io.out("字段：" + field)
+        loop local n (1, list.size(data_rows))
+            row_data = data_rows(n)
+            ser_key = row_data(1)
+            val = maps(field)(ser_key)
+            io.out("  编号 " + ser_key + " => " + string(val))
+        endloop
+    endloop
+end
+
+[test2]
