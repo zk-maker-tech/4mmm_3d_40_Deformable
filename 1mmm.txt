@@ -19,9 +19,9 @@ block group '27' range position-z 290.600 300.600 ;a5分层
 block group '26' range position-z 280.600 290.600 ;a6分层
 block group '25' range position-z 272.600 280.600 ;a7分层
 block group '24' range position-z 267.600 272.600 ;a8分层
-block group '23' range position-z 265 267.600 ;a9分层
-block group '22' range position-z 262.400 265 ;a10分层
-block group '21' range position-z 212.400 262.400 ;a11分层
+block group '23' range position-z 265 267.600 ;a9分层  煤层一
+block group '22' range position-z 262.400 265 ;a10分层 煤层二
+block group '21' range position-z 212.400 262.400 ;a11分层 底板
 
 ;煤层一
 block group '1' range position-x 500124.597 500304.897 position-y 3945823.227 3945923.227 position-z 265 267.600
@@ -71,6 +71,7 @@ fish define auto_join_blocks_sequence(group_counts)
 end
 [auto_join_blocks_sequence(36)]
 
+
 fish define init_point
     ;模型边界
     x_min_model = 499689.608
@@ -110,19 +111,21 @@ end
 ;隐藏底部组
 
 block hide range position-z @z_min_model @z_max_coal
-fish define hide_groups(start, end, step)
-    loop local i (start, end, step)
+
+fish define hide_groups(start, stop, step)
+    loop local i (start, stop, step)
         command
             block hide range group [i]
         endcommand
     endloop
 end  
-[hide_groups(24,26,2)];隐藏偶数组
+[hide_groups(24,36,2)];隐藏偶数组
+
 ;以煤层中心为原点
 block cut joint-set dip 90 dip-direction 90 origin @x_center_coal 0 0 number 50 spacing 25
 block cut joint-set dip 90 dip-direction 0 origin 0 @y_center_coal 0 number 100 spacing 25
 block hide off
-block hide range position-z @z_min_model @z_max_coal
+block hide range position-z @z_min_model @z_max_coal;煤层以下直到地板
 
 [hide_groups(25,35,2)];隐藏基数组
 ;以偏移位置为原点
@@ -131,7 +134,6 @@ block cut joint-set dip 90 dip-direction 0 origin 0 @y_shift 0 number 100 spacin
 block hide off
 
 
- 
 model save 'mmm1.3'
 
 ;划分zone
@@ -141,9 +143,8 @@ block zone generate edgelength 20 range id-list 243848 234321 230377 229428 2265
 block zone generate edgelength 10 range id-list 243848 234321 230377 229428 215002 214010 213997 213978 182483 168894 165051 164529 157058 145295 135918 135643 135170 125607 90313 75775 75773 75760 58213 58205 43238 41686 41571 41443 41401 41280 41090 41067 20088 18260 14917 13380 13015 8749 7010 4361 2673
 block zone generate edgelength 5 range id-list 229428 165051 43238
 
+
 ;model list ;显示模型信息
 model save 'mmm1.4'
 
 call '2mmm.txt'
-
-
